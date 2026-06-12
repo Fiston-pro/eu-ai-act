@@ -219,7 +219,7 @@ var SHARED=[
 ];
 
 var PERSONAS={
-hr:{label:"HR & People",ic:"🧑‍💼",role:"Deployer — Article 26 duties",sub:"Hiring, performance, people decisions",
+hr:{label:"I work in HR",ic:"🧑‍💼",role:"an AI user (the law says ‘deployer’)",sub:"Hiring and managing people",
  mirror:{k:"info",kicker:"You · HR & People",
   h:'HR is where this law bites <em>hardest</em>.',
   sub:"4 questions. Each answer earns you one useful truth.",btn:"Question 1 →"},
@@ -252,7 +252,7 @@ hr:{label:"HR & People",ic:"🧑‍💼",role:"Deployer — Article 26 duties",s
  ],
  moves:["List every AI tool touching people decisions — ask vendors what they added.","Set up candidate disclosure + a decision log.","Check nothing reads emotion — that one is banned."]},
 
-sw:{label:"Software house / agency",ic:"💻",role:"Provider — the heaviest duty class",sub:"You build AI features for clients",
+sw:{label:"We build software for clients",ic:"💻",role:"an AI builder (a ‘provider’)",sub:"An agency or dev shop",
  mirror:{k:"info",kicker:"You · Software house",
   h:'The law calls you a <em>"provider."</em>',
   sub:"The heaviest duty class — most agencies carry it unknowingly. 4 questions.",btn:"Question 1 →"},
@@ -285,7 +285,7 @@ sw:{label:"Software house / agency",ic:"💻",role:"Provider — the heaviest du
  ],
  moves:["Split provider vs deployer per client — one page each.","Make AI disclosure a default component.","Add the AI-Act clause to contracts and deal checks."]},
 
-st:{label:"Startup / AI builder",ic:"🚀",role:"Provider — and it can be your moat",sub:"You're building an AI product",
+st:{label:"I have a startup",ic:"🚀",role:"an AI builder (a ‘provider’)",sub:"Building an AI product",
  mirror:{k:"info",kicker:"You · Startup",
   h:'The Act is the <em>moat</em> your competitors ignore.',
   sub:"Buyers are starting to ask. 4 questions to see if you can answer.",btn:"Question 1 →"},
@@ -318,7 +318,7 @@ st:{label:"Startup / AI builder",ic:"🚀",role:"Provider — and it can be your
  ],
  moves:["Put your risk class in writing — before a buyer does.","Build the answer pack: docs index, owner, 90-day plan.","Fine-tuning models? Draft the GPAI trio."]},
 
-pub:{label:"Public sector & health",ic:"🏛️",role:"Public deployer — extra duties apply",sub:"Citizens, patients, students",
+pub:{label:"I work in government or health",ic:"🏛️",role:"a public body using AI",sub:"Schools, hospitals, public services",
  mirror:{k:"info",kicker:"You · Public sector & health",
   h:'Your AI touches people who <em>can’t opt out</em>.',
   sub:"Exactly where the Act looks hardest. 4 questions.",btn:"Question 1 →"},
@@ -352,7 +352,7 @@ pub:{label:"Public sector & health",ic:"🏛️",role:"Public deployer — extra
  ],
  moves:["Build the AI register: system, decision, owner.","Run the FRIA on anything touching citizens.","Assign and train named human oversight."]},
 
-cur:{label:"Just curious",ic:"👀",role:"Future-proof citizen",sub:"No fire to put out — yet",
+cur:{label:"I’m just curious",ic:"👀",role:"future-ready — ahead of most",sub:"I want to understand this",
  mirror:{k:"info",kicker:"You · The curious one",
   h:'No fire? <em>Perfect.</em> Cheapest seat in the house.',
   sub:"Guess your way through. Leave knowing more than 90% of people this law covers.",btn:"First guess →"},
@@ -501,14 +501,14 @@ function tplResult(){
   '<span class="aside"><button type="button" data-act="copysnap">⧉ Copy my snapshot</button></span>';
 }
 function tplCta(){
-  return '<span class="kicker">The offer · simple on purpose</span>'+
+  var mref="mailto:"+EMAIL+"?subject="+encodeURIComponent("EU AI Act — a question about my snapshot")+"&body="+encodeURIComponent("Hi Etienne,\n\nMy question:\n\n\n— — — — —\n"+snapshotText());
+  return '<span class="kicker">Your next step</span>'+
   '<h1 class="big">20 minutes. Free. About <em>your</em> answers.</h1>'+
-  '<p class="sub">I’ll have your snapshot in front of me: what’s urgent, what’s noise, what to do first. If I can’t help, I’ll say so in minute five. <strong>Worst case: free clarity.</strong></p>'+
-  '<button class="go" data-act="book" data-cal-namespace="review" data-cal-link="'+CAL_LINK+'" data-cal-config=\'{"layout":"month_view"}\'>Book the free 20 minutes →</button>'+
-  '<div class="cap" id="capBox"><div class="t">Not ready to talk?</div><div class="d">Leave your email — your snapshot + checklist, written by me, within 24h. No newsletter.</div>'+
-  '<div class="caprow"><input type="email" id="capEmail" placeholder="you@company.com" autocomplete="email"/><button type="button" data-act="capture">Send it</button></div>'+
-  '<div class="capok">✓ On its way — within 24h, personally. The call stays free whenever you’re ready.</div></div>'+
-  '<span class="aside">or email me: <a href="mailto:'+EMAIL+'" data-act="mailme">'+EMAIL+'</a> &nbsp;·&nbsp; <button type="button" data-act="other">try another path</button> &nbsp;·&nbsp; <a href="overview.html" data-act="overview">the one-page version</a></span>';
+  '<p class="sub">I’ll have your snapshot in front of me — what’s urgent, what’s noise, what to do first. Can’t help? I’ll say so in minute five.</p>'+
+  '<button class="go" data-act="book" data-cal-namespace="review" data-cal-link="'+CAL_LINK+'" data-cal-config=\'{"layout":"month_view"}\'>Book the free call →</button>'+
+  '<p class="sub" style="margin-top:26px">Rather not call? <strong>Just write to me.</strong> Your snapshot is already in the email — add your question and hit send.</p>'+
+  '<a class="go ghost" data-act="writeme" href="'+mref+'">Email me →</a>'+
+  '<span class="aside"><button type="button" data-act="copysnap">⧉ Copy my snapshot</button> &nbsp;·&nbsp; <button type="button" data-act="other">try another path</button> &nbsp;·&nbsp; <a href="overview.html" data-act="overview">one-page version</a></span>';
 }
 
 /* ---------- snapshot text ---------- */
@@ -558,17 +558,7 @@ function bind(card,step){
       b.setAttribute("data-cal-namespace","review");b.setAttribute("data-cal-link",CAL_LINK);b.setAttribute("data-cal-config",'{"layout":"month_view"}');
       b.style.display="none";document.body.appendChild(b);b.click();setTimeout(function(){b.remove();},800);
     }
-    else if(act==="capture"){
-      var em=(document.getElementById("capEmail").value||"").trim();
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){toast("Hmm — that email looks off. One more try?");return;}
-      if(PH_KEY&&window.posthog){window.posthog.identify(em,{email:em});}
-      track("lead_captured",{email:em,score:state.score,flags:state.flags.length,verdict:levelOf().cls});
-      document.getElementById("capBox").classList.add("done");
-      toast("✓ Got it — your report is on its way");
-      /* failsafe so no lead is ever lost even before PostHog is configured: */
-      var bodyTxt="Hi Etienne — please send my EU AI Act report.\n\nMy email: "+em+"\n\n"+snapshotText();
-      if(!PH_KEY){window.location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("My EU AI Act report ("+PERSONAS[state.p].label+")")+"&body="+encodeURIComponent(bodyTxt);}
-    }
+    else if(act==="writeme"){copyText(EMAIL);toast("✓ "+EMAIL+" copied — opening your mail app…");track("email_clicked",{from:"cta"});}
     else if(act==="copysnap"){copyText(snapshotText());toast("✓ Snapshot copied — paste it anywhere");track("snapshot_copied",{});}
     else if(act==="mailme"){copyText(EMAIL);toast("✓ "+EMAIL+" copied");track("email_clicked",{});}
     else if(act==="other"){track("restart",{kind:"another_path"});resetTo(3);}

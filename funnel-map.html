@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Funnel map · EU AI Act</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--paper:#EEE6D3;--paper2:#F5EFE0;--ink:#1A1410;--ink2:#3A2F25;--mute:#6B5C4A;--red:#B83228;--amber:#9A5A1F;--olive:#52612A;--rule:#1A141033;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:"Poppins",system-ui,sans-serif;font-size:15px;line-height:1.5;padding:40px 18px 90px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto}
+.mono{font-family:"JetBrains Mono",monospace}
+h1{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(28px,5vw,44px);letter-spacing:-.02em;margin-bottom:8px}
+h1 em{font-style:italic;color:var(--red)}
+.lead{color:var(--ink2);max-width:62ch;margin-bottom:6px}
+.legend{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--mute);margin-bottom:30px}
+.stagelbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:10px}
+.stagelbl::after{content:"";flex:1;height:1px;background:var(--rule)}
+.row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.box{background:var(--paper2);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;flex:1;min-width:150px}
+.box .n{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);display:block;margin-bottom:4px}
+.box .h{font-family:"Fraunces",serif;font-size:18px;font-weight:500;line-height:1.15;margin-bottom:4px}
+.box .d{font-size:13px;color:var(--ink2)}
+.arrow{text-align:center;font-size:22px;color:var(--red);margin:8px 0;font-family:"JetBrains Mono",monospace}
+.fork{background:var(--ink);color:var(--paper);border:none}
+.fork .h{color:var(--paper)}.fork .d{color:#C9B894}
+.paths{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:880px){.paths{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.paths{grid-template-columns:1fr}}
+.path{background:var(--paper2);border:1px solid var(--rule);border-radius:8px;padding:14px;display:flex;flex-direction:column}
+.path .top{display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.path .ic{font-size:22px;line-height:1}
+.path .who{font-family:"Fraunces",serif;font-size:16px;font-weight:600;line-height:1.1}
+.path .role{font-size:11px;color:var(--mute);margin-top:2px}
+.q{font-size:12.5px;color:var(--ink2);padding:6px 0;display:flex;gap:7px;align-items:flex-start;border-bottom:1px dotted var(--rule)}
+.q:last-of-type{border-bottom:none}
+.q b{font-family:"JetBrains Mono",monospace;color:var(--red);font-size:11px;flex:none}
+.tagline{margin-top:10px;font-size:11px;font-family:"JetBrains Mono",monospace;color:var(--mute)}
+.story{margin-top:8px;font-size:11px;background:#1A14100D;border-radius:4px;padding:6px 8px;color:var(--ink2)}
+.good{margin-top:8px;font-size:12px;color:var(--olive);font-weight:600}
+.snap{background:var(--paper2);border:2px solid var(--red);border-radius:8px;padding:18px;text-align:center;max-width:560px;margin:0 auto}
+.snap .h{font-family:"Fraunces",serif;font-size:22px;font-weight:500;margin-bottom:6px}
+.snap .d{font-size:13.5px;color:var(--ink2)}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.pill{border-radius:100px;padding:12px 22px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.pill.primary{background:var(--red);color:#F8F1DD}
+.pill.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.events{margin-top:40px;border-top:1px solid var(--rule);padding-top:18px}
+.events .t{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.events code{font-family:"JetBrains Mono",monospace;font-size:11.5px;background:#1A14100D;color:var(--ink2);padding:3px 8px;border-radius:4px;display:inline-block;margin:3px}
+.note{margin-top:30px;font-size:13px;color:var(--mute);font-style:italic;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Your funnel, <em>the whole map</em></h1>
+  <p class="lead">One screen, one idea, one tap. Everyone starts the same, picks a path, then gets a journey written for them — ending at the same place: your snapshot, then the call.</p>
+  <p class="legend">Read top → bottom. 5 paths run in parallel. ⌁ = a true story screen.</p>
+
+  <div class="stagelbl">1 · Everyone sees this first</div>
+  <div class="row">
+    <div class="box"><span class="n">Screen 1 · Hook</span><div class="h">A law you’ve never read</div><div class="d">Stops the scroll. Promises a fast, free answer.</div></div>
+    <div class="box"><span class="n">Screen 2 · Explainer</span><div class="h">What the Act is, in 10 sec</div><div class="d">No jargon. It ranks AI by harm.</div></div>
+    <div class="box"><span class="n">Screen 3 · Countdown</span><div class="h">Days until 2 Aug 2026</div><div class="d">Real clock + the €35M number.</div></div>
+  </div>
+
+  <div class="arrow">↓</div>
+  <div class="row"><div class="box fork" style="max-width:560px"><span class="n">Screen 4 · The fork</span><div class="h">“Which one is you?”</div><div class="d">They tap one. Everything after is personal.</div></div></div>
+  <div class="arrow">↓ &nbsp; splits into 5 &nbsp; ↓</div>
+
+  <div class="stagelbl">2 · Their path — 4 questions, a truth after each</div>
+  <div class="paths">
+    <div class="path">
+      <div class="top"><span class="ic">🧑‍💼</span><div><div class="who">I work in HR</div><div class="role">uses AI to decide on people</div></div></div>
+      <div class="q"><b>Q1</b>AI screening or ranking candidates?</div>
+      <div class="q"><b>Q2</b>Do candidates know AI was used?</div>
+      <div class="q"><b>Q3</b>Any tool scoring mood / “culture fit”?</div>
+      <div class="q"><b>Q4</b>Could you explain a rejection in writing?</div>
+      <div class="story">⌁ Amazon’s hiring AI penalised “women’s”</div>
+      <div class="good">→ “You need a one-page map”</div>
+    </div>
+    <div class="path">
+      <div class="top"><span class="ic">💻</span><div><div class="who">We build software</div><div class="role">builds AI for clients</div></div></div>
+      <div class="q"><b>Q1</b>Who owns compliance in contracts?</div>
+      <div class="q"><b>Q2</b>Do your chatbots say they’re AI?</div>
+      <div class="q"><b>Q3</b>Work in hiring / credit / health?</div>
+      <div class="q"><b>Q4</b>Tech docs ready to hand over?</div>
+      <div class="story">⌁ Airline forced to honour its chatbot</div>
+      <div class="good">→ “Compliance is a sales pitch”</div>
+    </div>
+    <div class="path">
+      <div class="top"><span class="ic">🚀</span><div><div class="who">I have a startup</div><div class="role">builds an AI product</div></div></div>
+      <div class="q"><b>Q1</b>Where does AI sit in the product?</div>
+      <div class="q"><b>Q2</b>Selling to EU / enterprise?</div>
+      <div class="q"><b>Q3</b>Buyer sends a questionnaire — now what?</div>
+      <div class="q"><b>Q4</b>Who owns compliance?</div>
+      <div class="story">⌁ Deals die from “no answer,” not non-compliance</div>
+      <div class="good">→ “Buyers say: show me”</div>
+    </div>
+    <div class="path">
+      <div class="top"><span class="ic">🏛️</span><div><div class="who">Gov / health</div><div class="role">public body using AI</div></div></div>
+      <div class="q"><b>Q1</b>Where does AI touch your work?</div>
+      <div class="q"><b>Q2</b>Done a rights impact check (FRIA)?</div>
+      <div class="q"><b>Q3</b>A journalist FOIs you tomorrow?</div>
+      <div class="q"><b>Q4</b>Is a human in charge of decisions?</div>
+      <div class="story">⌁ Wrong face-match → wrongful arrest</div>
+      <div class="good">→ “Three moves, in order”</div>
+    </div>
+    <div class="path">
+      <div class="top"><span class="ic">👀</span><div><div class="who">I’m just curious</div><div class="role">learning about this</div></div></div>
+      <div class="q"><b>Q1</b>Guess: what does the Act do?</div>
+      <div class="q"><b>Q2</b>What’s banned at work?</div>
+      <div class="q"><b>Q3</b>What’s the biggest fine?</div>
+      <div class="q"><b>Q4</b>Does your work touch AI?</div>
+      <div class="story">+ a one-screen “whole law” recap</div>
+      <div class="good">→ “You beat 90% of people”</div>
+    </div>
+  </div>
+
+  <div class="arrow">↓ &nbsp; all 5 paths join back &nbsp; ↓</div>
+
+  <div class="stagelbl">3 · The payoff (same for everyone)</div>
+  <div class="snap">
+    <div class="h">Your snapshot</div>
+    <div class="d">Your likely role · red/amber/green verdict · the flags from <em>your</em> answers · your first 3 moves. Free, no email. They can copy it.</div>
+  </div>
+  <div class="arrow">↓</div>
+  <div class="snap" style="border-color:var(--ink)">
+    <div class="h">Your next step</div>
+    <div class="d" style="margin-bottom:12px">One clear choice — book, or write.</div>
+    <div class="cta"><span class="pill primary">Book the free call</span><span class="pill ghost">Email me →</span></div>
+  </div>
+
+  <div class="events">
+    <div class="t">What PostHog records along the way</div>
+    <code>funnel_start</code><code>step_viewed</code><code>persona_selected</code><code>answer_given</code><code>result_viewed</code><code>cta_viewed</code><code>book_clicked</code><code>email_clicked</code><code>snapshot_copied</code>
+    <p style="margin-top:12px;font-size:12.5px;color:var(--mute)">Best funnel to build in PostHog: <b>persona_selected → result_viewed → book_clicked</b>, broken down by <b>persona</b>. Shows which path converts and which screen leaks.</p>
+  </div>
+
+  <p class="note">This is a sketch to mark up together — tell me to cut a question, reorder a path, or change the words, and I’ll redraw it.</p>
+</div>
+</body>
+</html>

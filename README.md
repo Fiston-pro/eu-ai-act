@@ -31,19 +31,22 @@ interactive funnel positioning Etienne Byiringiro as a go-to specialist for
 Every step fires events, so the whole journey is measurable as a funnel:
 
 `funnel_start → step_viewed → persona_selected → answer_given → result_viewed →
-cta_viewed → book_clicked / lead_captured`
+cta_viewed → book_clicked / email_clicked`
 
-Also: `snapshot_copied`, `email_clicked`, `overview_clicked`, `restart`, `resumed`.
+Also: `snapshot_copied`, `overview_clicked`, `restart`, `resumed`.
 Each event carries `persona`, and results carry `verdict` (red/amber/green),
 `score`, and `duration_s`.
 
 **Suggested PostHog funnel:** `persona_selected → result_viewed → book_clicked`,
 broken down by `persona` — shows which audience converts and where people drop.
 
-**Leads:** `lead_captured` events carry the visitor's email (also identified as a
-person profile). Check these daily and send the promised report within 24h.
-Until `PH_KEY` is set, the email-capture button falls back to opening a pre-filled
-email to Etienne so no lead is lost.
+**The two ways to convert:** the call (Cal.com popup, the hero) and a plain
+*"Email me"* button that opens the visitor's mail app with their snapshot
+pre-filled, ready for them to add a question. No data is stored server-side and
+there is no email-capture form.
+
+`funnel-map.html` is a visual, one-screen map of the whole flow — handy for
+planning changes.
 
 ## Tech
 
