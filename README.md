@@ -1,59 +1,51 @@
-# Etienne Byiringiro · EU AI Act funnel
+# Etienne Byiringiro · EU AI Act
 
-The site behind [ishi-eu-ai-act.vercel.app](https://ishi-eu-ai-act.vercel.app) — an
-interactive funnel positioning Etienne Byiringiro as a go-to specialist for
-**EU AI Act readiness and AI governance**.
+Consulting site for **EU AI Act readiness & AI governance**, live at
+[ishi-eu-ai-act.vercel.app](https://ishi-eu-ai-act.vercel.app).
 
 ## Pages
 
-- **`index.html` — the funnel.** A tap-through, one-idea-per-screen journey:
-  hook → 10-second explainer → live countdown → *"Which one is you?"* →
-  a personalized quiz path (4 questions, an insight after every answer) →
-  a personal risk snapshot → the offer (free 20-min call, hero) with optional
-  email capture for a personally-written report.
-  Five persona paths: **HR & People · Software house/agency · Startup/AI builder ·
-  Public sector & health · Just curious.**
-- **`overview.html`** — the classic one-page version, linked from the funnel for
-  readers who prefer everything on one screen.
-
-## Configuration (top of the `<script>` in `index.html`)
-
-| Constant | Purpose |
+| File | Role |
 |---|---|
-| `PH_KEY` | PostHog project key (`phc_…`). Empty = analytics off, events log to console. |
-| `PH_HOST` | PostHog region host (EU by default). |
-| `CAL_LINK` | Cal.com booking slug for the free review. |
-| `EMAIL` | Public contact email. |
-| `DEADLINE` | 2 Aug 2026 — drives the live countdown everywhere. |
+| `index.html` | **Homepage** — static, server-rendered content (crawlable by search & AI engines). Who I am, what the EU AI Act is, the four risk levels, services, recent-work/trust, FAQ teaser, contact. Primary CTA → the interactive check. |
+| `check.html` | The **interactive 3-minute check** (the funnel). Progressive enhancement — full JS app. Has a `<noscript>` fallback to the homepage. |
+| `faq.html` | **FAQ** — six question-headed answers (applies-to-me, HR high-risk, edtech high-risk, provider vs deployer, the 2026 deadline, fines) with `FAQPage` structured data. Built to be quotable by AI search. |
+| `overview.html` | Redirect stub → `/` (the old one-pager URL; content now lives on the homepage). |
+| `funnel-map.html` | Internal planning diagram of the funnel (not linked publicly). |
+| `sample-audit.pdf` | **Placeholder** sample deliverable — replace with a real redacted report. |
+| `robots.txt`, `sitemap.xml` | Crawl directives (AI crawlers explicitly allowed) + sitemap. |
 
-## Analytics (PostHog)
+## Why two layers (content + check)
 
-Every step fires events, so the whole journey is measurable as a funnel:
+Search engines and AI engines (ChatGPT, Perplexity, Google AI Overviews) read
+the **raw HTML**. The homepage is fully static so its text is in "view source",
+not injected by JS. The interactive check is layered on top at `/check.html` as
+progressive enhancement — great for humans, never required to read the content.
 
-`funnel_start → step_viewed → persona_selected → answer_given → result_viewed →
-cta_viewed → book_clicked / email_clicked`
+## SEO / GEO
 
-Also: `snapshot_copied`, `overview_clicked`, `restart`, `resumed`.
-Each event carries `persona`, and results carry `verdict` (red/amber/green),
-`score`, and `duration_s`.
+- Unique `<title>` + meta description per page; canonical URLs; Open Graph + Twitter tags.
+- JSON-LD: `Person` + `ProfessionalService` + `WebSite` on the homepage; `FAQPage` on the FAQ.
+- `robots.txt` allows all crawlers, including GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.
+- `sitemap.xml` lists the homepage, FAQ, and check.
+- Visible "Last updated" date on content pages.
 
-**Suggested PostHog funnel:** `persona_selected → result_viewed → book_clicked`,
-broken down by `persona` — shows which audience converts and where people drop.
+> Base URL is hard-coded as `https://ishi-eu-ai-act.vercel.app`. If you add a
+> custom domain, update it in the canonical/OG tags, JSON-LD, `robots.txt`,
+> and `sitemap.xml`.
 
-**The two ways to convert:** the call (Cal.com popup, the hero) and a plain
-*"Email me"* button that opens the visitor's mail app with their snapshot
-pre-filled, ready for them to add a question. No data is stored server-side and
-there is no email-capture form.
+## Configuration
 
-`funnel-map.html` is a visual, one-screen map of the whole flow — handy for
-planning changes.
+- **Booking:** Cal.com slug `etienne-ishi/20min` (in each page's small script).
+- **Email:** `etienne.ishi@gmail.com`.
+- **Analytics:** PostHog (US) is wired in `check.html` (`PH_KEY`). Events:
+  `funnel_start, persona_selected, answer_given, result_viewed, book_clicked, email_clicked`.
+- **Share image:** add a real `og.png` (1200×630) and uncomment the `og:image` tags in `index.html`.
 
-## Tech
+## To replace (placeholders)
 
-Single self-contained files — no build step, fonts via Google Fonts. Vanilla JS
-state machine, browser back/forward support, localStorage resume
-("welcome back" bar), keyboard navigation (Enter / 1-5), `prefers-reduced-motion`
-respected, `<noscript>` fallback to the overview page.
+- `sample-audit.pdf` — a real redacted sample report.
+- The `CASE STUDY` and `TESTIMONIAL` placeholders in `index.html` (search those comments). Do not invent — fill with genuine work.
 
 ## Run / deploy
 

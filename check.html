@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Does the EU AI Act apply to you? · Find out in 3 minutes</title>
+<meta name="description" content="Answer a few questions, get a personal EU AI Act risk snapshot — free, no email needed. Built by Etienne Byiringiro, AI governance specialist."/>
+<link rel="canonical" href="https://ishi-eu-ai-act.vercel.app/check.html"/>
+<meta name="robots" content="index,follow"/>
+<meta name="author" content="Etienne Byiringiro"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Etienne Byiringiro · EU AI Act"/>
+<meta property="og:title" content="Does the EU AI Act apply to you? · 3-minute check"/>
+<meta property="og:description" content="A 3-minute interactive check. Leave with your personal EU AI Act risk snapshot — free."/>
+<meta property="og:url" content="https://ishi-eu-ai-act.vercel.app/check.html"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="theme-color" content="#EEE6D3"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23B83228'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23F8F1DD' text-anchor='middle'%3EEB%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --paper:#EEE6D3;--paper2:#F5EFE0;--ink:#1A1410;--ink2:#3A2F25;
+  --mute:#6B5C4A;--red:#B83228;--amber:#9A5A1F;--olive:#52612A;
+  --rule:#1A14101A;--rule2:#1A141033;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-weight:400;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow:hidden;
+}
+.mono{font-family:"JetBrains Mono",monospace}
+
+/* ---------- HUD ---------- */
+.hud{position:fixed;top:0;left:0;right:0;z-index:40;background:rgba(238,230,211,.86);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--rule)}
+.hud .track{height:3px}
+.hud .track i{display:block;height:100%;width:0;background:var(--red);transition:width .35s cubic-bezier(.2,.7,.2,1)}
+.hud .meta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 16px;max-width:1100px;margin:0 auto}
+.brand{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;white-space:nowrap}
+.brand b{color:var(--red);font-weight:700}
+.brand span{color:var(--mute)}
+.hudright{display:flex;align-items:center;gap:14px}
+.snapchip{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);border:1px solid var(--rule2);border-radius:100px;padding:4px 10px;display:none}
+.snapchip.on{display:inline-block}
+.snapchip b{color:var(--red)}
+.restart{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);background:none;border:none;cursor:pointer;padding:4px}
+.restart:hover{color:var(--red)}
+
+/* ---------- stage / cards ---------- */
+.stage{height:100dvh;display:flex;flex-direction:column;padding:86px 22px 92px;overflow-y:auto}
+.card{width:100%;max-width:640px;margin:auto;opacity:0;transform:translateY(14px);transition:opacity .45s cubic-bezier(.2,.7,.2,1),transform .45s cubic-bezier(.2,.7,.2,1)}
+.card.in{opacity:1;transform:none}
+.kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);font-weight:500;display:block;margin-bottom:16px}
+.kicker em{color:var(--red);font-style:normal}
+.big{font-family:"Fraunces",serif;font-weight:360;font-size:clamp(30px,6.2vw,52px);line-height:1.06;letter-spacing:-.018em;margin-bottom:18px}
+.big em{font-style:italic;color:var(--red)}
+.big .ok{font-style:italic;color:var(--olive)}
+.sub{font-size:clamp(16px,2.2vw,18.5px);color:var(--ink2);max-width:46ch;margin-bottom:10px}
+.sub strong{font-weight:600}
+.youSaid{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--mute);border:1px solid var(--rule2);border-radius:100px;padding:5px 12px;margin-bottom:18px}
+.youSaid b{color:var(--ink);font-weight:500}
+.flagnote{display:inline-flex;align-items:center;gap:7px;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:6px 12px;margin-top:16px}
+.flagnote.red{background:#B8322817;color:var(--red)}
+.flagnote.amber{background:#9A5A1F17;color:var(--amber)}
+.flagnote.green{background:#5261241A;color:var(--olive)}
+.storytag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:5px 11px;margin-bottom:18px}
+
+/* ---------- buttons ---------- */
+.btnrow{display:flex;flex-direction:column;gap:10px;margin-top:26px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;background:var(--paper2);border:1px solid var(--rule2);border-radius:4px;padding:16px 18px;font-family:inherit;font-size:16.5px;font-weight:500;color:var(--ink);cursor:pointer;transition:transform .12s,border-color .12s,background .12s}
+.opt:hover{border-color:var(--ink);transform:translateY(-1px)}
+.opt:active{transform:translateY(0)}
+.opt .arr{font-family:"JetBrains Mono",monospace;color:var(--mute);font-size:13px;flex:none}
+.opt.picked{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.opt small{display:block;font-size:13px;font-weight:400;color:var(--mute);margin-top:2px}
+.opt.picked small{color:#C9B894}
+.go{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#F8F1DD;border:none;cursor:pointer;text-decoration:none;padding:17px 28px;font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;margin-top:28px;border-radius:3px;transition:transform .15s}
+.go:hover{transform:translateY(-2px)}
+.go:active{transform:translateY(0)}
+.go.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.go.olive{background:var(--olive)}
+.aside{display:block;margin-top:18px;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--mute)}
+.aside a,.aside button{color:var(--olive);background:none;border:none;border-bottom:1px solid var(--olive);text-decoration:none;cursor:pointer;font:inherit;padding:0}
+.aside a:hover,.aside button:hover{color:var(--ink)}
+
+/* ---------- persona fork ---------- */
+.fork{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.fork .opt{padding:17px 18px}
+.fork .ic{flex:none;width:34px;font-size:20px;text-align:center}
+
+/* ---------- countdown inline ---------- */
+.cdrow{display:flex;align-items:baseline;gap:14px;margin:14px 0 6px;flex-wrap:wrap}
+.cdrow .n{font-family:"Fraunces",serif;font-weight:300;font-size:clamp(64px,15vw,110px);line-height:.85;color:var(--red);letter-spacing:-.04em}
+.cdrow .c{font-family:"Fraunces",serif;font-style:italic;font-size:18px;color:var(--ink2);max-width:18ch}
+
+/* ---------- result ---------- */
+.verdict{font-family:"Fraunces",serif;font-weight:380;font-size:clamp(26px,4.6vw,38px);line-height:1.1;letter-spacing:-.014em;margin:4px 0 18px}
+.verdict.red{color:var(--red)}.verdict.amber{color:var(--amber)}.verdict.green{color:var(--olive)}
+.rolebadge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 12px;margin-bottom:18px}
+.flags{display:flex;flex-direction:column;gap:9px;margin:6px 0 20px}
+.flag{display:grid;grid-template-columns:14px 1fr;gap:12px;align-items:start;border:1px solid var(--rule2);border-radius:4px;padding:13px 15px;background:var(--paper2);font-size:15px;line-height:1.45;color:var(--ink2)}
+.flag i{width:9px;height:9px;border-radius:50%;margin-top:7px}
+.flag.red i{background:var(--red)}.flag.amber i{background:var(--amber)}.flag.green i{background:var(--olive)}
+.moves{margin:4px 0 6px;counter-reset:m}
+.moves li{counter-increment:m;list-style:none;display:grid;grid-template-columns:40px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid var(--rule);font-size:15.5px;color:var(--ink2)}
+.moves li:last-child{border-bottom:none}
+.moves li::before{content:counter(m,decimal-leading-zero);font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--red);font-weight:500;padding-top:2px}
+.smallprint{font-size:12.5px;color:var(--mute);margin-top:16px;max-width:50ch}
+
+/* ---------- email capture ---------- */
+.cap{margin-top:22px;border:1px solid var(--rule2);border-radius:4px;background:var(--paper2);padding:18px}
+.cap .t{font-family:"Fraunces",serif;font-size:19px;font-weight:500;margin-bottom:4px}
+.cap .d{font-size:14px;color:var(--mute);margin-bottom:12px}
+.caprow{display:flex;gap:8px;flex-wrap:wrap}
+.caprow input{flex:1;min-width:200px;font-family:inherit;font-size:15px;padding:13px 14px;border:1px solid var(--rule2);border-radius:3px;background:var(--paper);color:var(--ink);outline:none}
+.caprow input:focus{border-color:var(--ink)}
+.caprow button{background:var(--ink);color:var(--paper);border:none;border-radius:3px;padding:13px 18px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-weight:500}
+.caprow button:hover{background:var(--ink2)}
+.capok{display:none;font-size:15px;color:var(--olive);font-weight:500;padding:6px 0}
+.cap.done .caprow,.cap.done .d{display:none}
+.cap.done .capok{display:block}
+
+/* ---------- resume bar ---------- */
+.resume{display:none;margin-top:26px;border:1px dashed var(--rule2);border-radius:4px;padding:13px 16px;font-size:14px;color:var(--ink2);align-items:center;gap:8px;flex-wrap:wrap}
+.resume.on{display:flex}
+.resume button{background:none;border:none;color:var(--red);font:inherit;font-weight:600;cursor:pointer;border-bottom:1px solid var(--red);padding:0}
+
+/* ---------- toast / back ---------- */
+#toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%) translateY(12px);z-index:60;background:var(--ink);color:var(--paper);font-family:"JetBrains Mono",monospace;font-size:12px;padding:11px 16px;border-radius:100px;box-shadow:0 10px 34px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.backbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:linear-gradient(to top,var(--paper) 30%,transparent)}
+.backbtn{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);background:none;border:none;cursor:pointer;padding:8px;visibility:hidden}
+.backbtn.on{visibility:visible}
+.backbtn:hover{color:var(--ink)}
+.stepcount{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.14em;color:var(--mute)}
+
+@media(prefers-reduced-motion:reduce){
+  .card{transition:none}
+  .hud .track i{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hud">
+  <div class="track"><i id="prog"></i></div>
+  <div class="meta">
+    <div class="brand"><b>Etienne&nbsp;Byiringiro</b> <span>· EU AI Act</span></div>
+    <div class="hudright">
+      <span class="snapchip" id="snapchip">Snapshot: <b>0</b> items</span>
+      <button class="restart" id="restartBtn" type="button">↺ Restart</button>
+    </div>
+  </div>
+</header>
+
+<main class="stage" id="stage" aria-live="polite"></main>
+
+<div class="backbar">
+  <button class="backbtn" id="backBtn" type="button">← Back</button>
+  <span class="stepcount" id="stepcount"></span>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<noscript>
+<div style="position:fixed;inset:0;background:#EEE6D3;z-index:99;display:flex;align-items:center;justify-content:center;padding:30px;text-align:center;font-family:Georgia,serif">
+  <p>This interactive check needs JavaScript.<br/>No problem — <a href="index.html">read the one-page version instead →</a></p>
+</div>
+</noscript>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= CONFIG ================= */
+var PH_KEY="phc_yyUhgVn4FhGkKpqzY3s8dfc8tV4hyxbzH27GMEBDmBKk"; // PostHog project key
+var PH_HOST="https://us.i.posthog.com"; // US cloud
+var CAL_LINK="etienne-ishi/20min";   // live cal.com booking link
+var EMAIL="etienne.ishi@gmail.com";
+var DEADLINE=new Date("2026-08-02T00:00:00");
+
+function daysLeft(){var d=Math.ceil((DEADLINE-new Date())/86400000);return d>0?d:0;}
+
+/* ================= ANALYTICS ================= */
+if(PH_KEY){
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once identify alias people.set people.set_once set_config opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  window.posthog.init(PH_KEY,{api_host:PH_HOST,person_profiles:"identified_only"});
+}
+function track(name,props){
+  props=props||{};
+  props.persona=state.p||"none";
+  props.days_left=daysLeft();
+  if(PH_KEY&&window.posthog){window.posthog.capture(name,props);}
+  else if(window.console){console.debug("[track]",name,props);}
+}
+
+/* ================= HELPERS ================= */
+var toastEl=document.getElementById("toast"),toastT;
+function toast(msg){toastEl.textContent=msg;toastEl.classList.add("show");clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove("show");},2800);}
+function copyText(s){try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(s);return;}}catch(e){}try{var ta=document.createElement("textarea");ta.value=s;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.top="-1000px";document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+
+/* ================= CAL.COM ================= */
+(function(C,A,L){var p=function(a,ar){a.q.push(ar);};var d=C.document;C.Cal=C.Cal||function(){var cal=C.Cal;var ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){var api=function(){p(api,arguments);};var namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,["initNamespace",namespace]);}else p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
+window.Cal("init","review",{origin:"https://cal.com"});
+window.Cal.ns["review"]("ui",{hideEventTypeDetails:false,layout:"month_view"});
+
+/* ================= FUNNEL DATA ================= */
+
+var SHARED=[
+  {k:"info",kicker:"3-minute check · free · no email",
+   h:'Using AI in Europe? Your team is probably breaking a law you\'ve <em>never read</em>.',
+   sub:"A few taps. Then you know where you stand.",
+   btn:"Show me →",extra:"hurry"},
+  {k:"info",kicker:"The 10-second version",
+   h:'The <em>EU AI Act</em>. The world’s first AI law.',
+   sub:"It doesn’t ban AI. It ranks every system by harm — more harm, more rules.",
+   btn:"Why should I care? →"},
+  {k:"count"},
+  {k:"fork"}
+];
+
+var PERSONAS={
+hr:{label:"I work in HR",ic:"🧑‍💼",role:"an AI user (the law says ‘deployer’)",sub:"Hiring and managing people",
+ mirror:{k:"info",kicker:"You · HR & People",
+  h:'HR is where this law bites <em>hardest</em>.',
+  sub:"4 questions. Each answer earns you one useful truth.",btn:"Question 1 →"},
+ steps:[
+  {k:"ask",id:"hr_screen",q:"Do you use AI to screen or rank candidates?",sub:"ATS ranking, CV filters, match scores — all count.",
+   opts:[
+    {t:"Yes",insight:{h:'That’s officially <em>high-risk</em>.',sub:"Same legal class as medical software. Allowed — but only with oversight, bias checks, and logs."},flag:{sev:"red",txt:"High-risk AI system in use (recruitment screening)"},score:2},
+    {t:"No",insight:{h:'"No" usually means <em>"not knowingly."</em>',sub:"Most ATS tools added AI scoring in an update. One email to your vendor settles it."},flag:{sev:"amber",txt:"AI use in hiring unverified — vendor check needed"},score:1},
+    {t:"Not sure",insight:{h:'The duties apply <em>anyway</em>.',sub:"Not knowing isn’t a defence. An inventory is move #1."},flag:{sev:"amber",txt:"Unknown AI exposure in hiring stack"},score:1}]},
+  {k:"ask",id:"hr_disclose",q:"Do candidates know AI screened them?",
+   opts:[
+    {t:"Yes, we tell them",insight:{h:'Rare. <span class="ok">Well done.</span>',sub:"You’re ahead of ~90% of teams. Keep written proof."},flag:{sev:"green",txt:"Candidate transparency already in place"},score:0},
+    {t:"No",insight:{h:'Telling them is <em>mandatory</em>.',sub:"Skipping it risks fines — and feeds discrimination claims."},flag:{sev:"red",txt:"No candidate disclosure — transparency duty unmet"},score:2},
+    {t:"Never thought about it",insight:{h:'Almost nobody has. <em>That’s your edge.</em>',sub:"One template letter puts you ahead of your whole industry."},flag:{sev:"amber",txt:"Candidate disclosure process missing"},score:1}]},
+  {k:"story",tag:"True story",h:'Amazon’s hiring AI taught itself to penalise the word <em>"women’s."</em>',
+   sub:"It filtered real people before anyone noticed. Bias doesn’t announce itself — it scales.",btn:"Next →"},
+  {k:"ask",id:"hr_emotion",q:"Any tool scoring mood, engagement, or 'culture fit'?",sub:"Video-interview analysis, sentiment tracking…",
+   opts:[
+    {t:"Yes",insight:{h:'Not high-risk. <em>Banned.</em>',sub:"Emotion-reading AI at work is prohibited since Feb 2025. Act this week, not this quarter."},flag:{sev:"red",txt:"Possible BANNED practice: workplace emotion recognition"},score:3},
+    {t:"No",insight:{h:'Keep it that way. That line is <em>absolute</em>.',sub:"The vendor pitch will come. Now you’ll recognise it."},flag:{sev:"green",txt:"No banned emotion-AI practices detected"},score:0},
+    {t:"Not sure",insight:{h:'Find out <em>this week</em>.',sub:"Tools that claim to read emotion at work are banned. 'The vendor didn’t say' won’t help."},flag:{sev:"red",txt:"Possible banned practice — emotion AI unverified"},score:2}]},
+  {k:"ask",id:"hr_explain",q:"A rejected candidate asks: 'Did an algorithm reject me?' Could you answer in writing?",
+   opts:[
+    {t:"Yes, we could",insight:{h:'You have the <span class="ok">bones of compliance</span>.',sub:"What’s left is mostly assembling the paperwork."},flag:{sev:"green",txt:"Explainability and logging largely in place"},score:0},
+    {t:"No",insight:{h:'That letter is coming. The Act <em>invites</em> it.',sub:"One logging habit + one template fixes it. Cheap now, expensive after the first complaint."},flag:{sev:"red",txt:"Cannot explain automated decisions to candidates"},score:2},
+    {t:"Honestly — gulp",insight:{h:'Honest. <em>Fixable.</em>',sub:"A simple decision log turns 'gulp' into 'yes.'"},flag:{sev:"amber",txt:"Decision explainability process missing"},score:1}]},
+  {k:"info",kicker:"The good news",
+   h:'You don’t need 450 pages. You need a <em>one-page map</em>.',
+   sub:"Your tools, duties, gaps — in plain language. That’s my job.",btn:"My snapshot →"}
+ ],
+ moves:["List every AI tool touching people decisions — ask vendors what they added.","Set up candidate disclosure + a decision log.","Check nothing reads emotion — that one is banned."]},
+
+sw:{label:"We build software for clients",ic:"💻",role:"an AI builder (a ‘provider’)",sub:"An agency or dev shop",
+ mirror:{k:"info",kicker:"You · Software house",
+  h:'The law calls you a <em>"provider."</em>',
+  sub:"The heaviest duty class — most agencies carry it unknowingly. 4 questions.",btn:"Question 1 →"},
+ steps:[
+  {k:"ask",id:"sw_contract",q:"Who owns AI-law compliance in your client contracts?",
+   opts:[
+    {t:"The client",insight:{h:'Check the wording. <em>Silence sides against you.</em>',sub:"If the contract doesn’t say it, the duty defaults to whoever built it. You."},flag:{sev:"amber",txt:"Compliance ownership assumed, likely not contractual"},score:1},
+    {t:"We do",insight:{h:'Rare and smart — <span class="ok">if implemented</span>.',sub:"Next: do the obligations actually exist in your delivery?"},flag:{sev:"green",txt:"Compliance ownership acknowledged in contracts"},score:0},
+    {t:"Nobody has asked",insight:{h:'Then by default, <em>it’s you</em>.',sub:"The fix is one clause — if you know to write it."},flag:{sev:"red",txt:"No compliance ownership in client contracts"},score:2}]},
+  {k:"ask",id:"sw_disclose",q:"Do your chatbots tell users they're AI?",
+   opts:[
+    {t:"Always",insight:{h:'Article 50: <span class="ok">done</span>.',sub:"Keep evidence per project. Proof is half the duty."},flag:{sev:"green",txt:"AI disclosure shipped by default"},score:0},
+    {t:"Sometimes",insight:{h:'"Sometimes" means <em>some clients are exposed</em>.',sub:"Make disclosure a default component, not a per-project decision."},flag:{sev:"amber",txt:"Inconsistent AI disclosure across projects"},score:1},
+    {t:"No",insight:{h:'A live legal gap — <em>yours</em>, not the client’s.',sub:"Cheapest fix in the whole law: a label + a line of metadata."},flag:{sev:"red",txt:"Shipped AI lacks mandatory disclosure"},score:2}]},
+  {k:"story",tag:"True story",h:'An airline’s chatbot <em>invented</em> a refund policy. A court made them honour it.',
+   sub:"You own what your AI says — even when you built it for someone else.",btn:"Next →"},
+  {k:"ask",id:"sw_sectors",q:"Any client work in hiring, credit, education, or health?",
+   opts:[
+    {t:"Yes",insight:{h:'<em>High-risk territory.</em> Duties get heavy.',sub:"Risk management, tech docs, conformity checks. Price it in — or it becomes liability."},flag:{sev:"red",txt:"High-risk sector deliverables in portfolio"},score:2},
+    {t:"No",insight:{h:'Good — <em>guard that line</em>.',sub:"One hiring-tool contract changes everything. Screen deals before signing."},flag:{sev:"green",txt:"No high-risk sector work currently"},score:0},
+    {t:"Not sure",insight:{h:'Your project list <em>is</em> your risk register.',sub:"One afternoon with the portfolio answers it."},flag:{sev:"amber",txt:"Portfolio risk exposure unmapped"},score:1}]},
+  {k:"ask",id:"sw_docs",q:"Could you hand over technical docs for your last AI feature — today?",
+   opts:[
+    {t:"Yes",insight:{h:'<span class="ok">Genuinely rare.</span> Audit-ready.',sub:"Make it sales copy: 'we ship AI-Act-ready.'"},flag:{sev:"green",txt:"Technical documentation practice in place"},score:0},
+    {t:"Partially",insight:{h:'Half a paper trail is <em>normal</em> — and fixable.',sub:"Templates turn 'partially' into 'yes' in about two weeks."},flag:{sev:"amber",txt:"Technical documentation incomplete"},score:1},
+    {t:"No",insight:{h:'Most can’t. <em>That’s your opening.</em>',sub:"Template it from the next project on. Retrofitting costs 5×."},flag:{sev:"red",txt:"No technical documentation for shipped AI"},score:2}]},
+  {k:"info",kicker:"The good news",
+   h:'Compliance is a <em>sales pitch</em>.',
+   sub:"'We ship AI-Act-ready' wins against every agency that shrugs.",btn:"My snapshot →"}
+ ],
+ moves:["Split provider vs deployer per client — one page each.","Make AI disclosure a default component.","Add the AI-Act clause to contracts and deal checks."]},
+
+st:{label:"I have a startup",ic:"🚀",role:"an AI builder (a ‘provider’)",sub:"Building an AI product",
+ mirror:{k:"info",kicker:"You · Startup",
+  h:'The Act is the <em>moat</em> your competitors ignore.',
+  sub:"Buyers are starting to ask. 4 questions to see if you can answer.",btn:"Question 1 →"},
+ steps:[
+  {k:"ask",id:"st_what",q:"Where does AI sit in your product?",
+   opts:[
+    {t:"It IS the product",insight:{h:'Your risk class <em>is</em> your strategy.',sub:"It decides your duties, your docs, and whether EU sales flow or stall."},flag:{sev:"amber",txt:"Core-AI product — risk classification is strategic"},score:1},
+    {t:"It's a feature",insight:{h:'Lighter duties — buyers <em>still ask</em>.',sub:"A one-pager answer keeps deals moving."},flag:{sev:"green",txt:"AI as feature — lighter but real duties"},score:0},
+    {t:"We fine-tune / build models",insight:{h:'You have <em>GPAI duties</em> of your own.',sub:"Tech docs, training-data summary, copyright policy. A sprint now — a quarter later."},flag:{sev:"red",txt:"GPAI-linked duties (model building/fine-tuning)"},score:2}]},
+  {k:"ask",id:"st_eu",q:"Selling into the EU, or to enterprises?",
+   opts:[
+    {t:"Already",insight:{h:'Procurement will ask <em>this year</em>.',sub:"Crisp answer = close. No answer = stuck in legal review."},flag:{sev:"red",txt:"Active EU/enterprise exposure — questionnaires incoming"},score:2},
+    {t:"Within a year",insight:{h:'<span class="ok">Perfect timing.</span>',sub:"Now it’s a docs sprint. After product-market fit, it’s a refactor."},flag:{sev:"amber",txt:"EU/enterprise sales planned — readiness window open"},score:1},
+    {t:"Someday",insight:{h:'"Someday" costs <em>10×</em>.',sub:"No need to comply today. Just don’t build it wrong."},flag:{sev:"green",txt:"No near-term EU exposure — light prep advised"},score:0}]},
+  {k:"story",tag:"How deals die",h:'The startup that loses isn’t the non-compliant one. It’s the one with <em>no answer</em>.',
+   sub:"Diligence asks: who owns this, where are the docs, what’s your risk class. Silence reads as risk.",btn:"Next →"},
+  {k:"ask",id:"st_quest",q:"An enterprise buyer sends an AI-governance questionnaire today. What happens?",
+   opts:[
+    {t:"We'd answer fine",insight:{h:'An <span class="ok">unfair advantage</span>.',sub:"Put 'AI-Act-ready' in your deck. Make rivals prove it too."},flag:{sev:"green",txt:"Governance questionnaire-ready"},score:0},
+    {t:"We'd scramble",insight:{h:'A scramble you can <em>schedule</em>.',sub:"Two weeks builds the answer pack. Cheaper than a lost quarter."},flag:{sev:"amber",txt:"Questionnaire would trigger a scramble"},score:1},
+    {t:"We'd probably lose the deal",insight:{h:'This quiz just <em>paid for itself</em>.',sub:"That questionnaire is already in your pipeline’s future. The fix is days."},flag:{sev:"red",txt:"Enterprise diligence = deal risk today"},score:2}]},
+  {k:"ask",id:"st_owner",q:"Who owns compliance at your company?",
+   opts:[
+    {t:"A founder",insight:{h:'Right owner. <em>Wrong hours.</em>',sub:"It needs your attention, not your execution. Borrow a brain."},flag:{sev:"amber",txt:"Founder-owned compliance — time leak"},score:1},
+    {t:"Someone on the team",insight:{h:'<span class="ok">Good.</span> Give them a map.',sub:"The gap is rarely effort — it’s knowing what 'done' looks like."},flag:{sev:"green",txt:"Compliance owner exists — needs a map"},score:0},
+    {t:"Nobody yet",insight:{h:'Normal. It needs <em>two weeks</em>, not a hire.',sub:"A project, not a department — if you scope it right."},flag:{sev:"red",txt:"No compliance owner"},score:2}]},
+  {k:"info",kicker:"The good news",
+   h:'Buyers don’t ask "compliant?" They ask <em>"show me."</em>',
+   sub:"I make you show-able. Startup-sized, zero bloat.",btn:"My snapshot →"}
+ ],
+ moves:["Put your risk class in writing — before a buyer does.","Build the answer pack: docs index, owner, 90-day plan.","Fine-tuning models? Draft the GPAI trio."]},
+
+pub:{label:"I work in government or health",ic:"🏛️",role:"a public body using AI",sub:"Schools, hospitals, public services",
+ mirror:{k:"info",kicker:"You · Public sector & health",
+  h:'Your AI touches people who <em>can’t opt out</em>.',
+  sub:"Exactly where the Act looks hardest. 4 questions.",btn:"Question 1 →"},
+ steps:[
+  {k:"ask",id:"pub_where",q:"Where does AI touch your work?",
+   opts:[
+    {t:"Decisions about people",insight:{h:'<em>High-risk by default.</em>',sub:"Eligibility, placement, benefits — the sharpest edge of the law."},flag:{sev:"red",txt:"High-risk by default: AI in people decisions"},score:2},
+    {t:"Triage or eligibility",insight:{h:'Triage is the <em>textbook</em> high-risk case.',sub:"Ranking humans for access carries the heavy duty class."},flag:{sev:"red",txt:"High-risk: triage/eligibility AI"},score:2},
+    {t:"Back-office only",insight:{h:'Lower risk — watch the <em>creep</em>.',sub:"Today’s pilot is next year’s citizen-facing tool."},flag:{sev:"green",txt:"Back-office AI — monitor scope creep"},score:0},
+    {t:"Not sure",insight:{h:'The inventory is <em>step zero</em> anyway.',sub:"Mapping your AI is the law’s first expectation of you."},flag:{sev:"amber",txt:"AI inventory missing"},score:1}]},
+  {k:"ask",id:"pub_fria",q:"Has anyone run a fundamental-rights impact assessment (FRIA)?",
+   opts:[
+    {t:"Yes",insight:{h:'<span class="ok">Genuinely ahead.</span>',sub:"Keep it living — systems drift, assessments age."},flag:{sev:"green",txt:"FRIA exists — keep it living"},score:0},
+    {t:"No",insight:{h:'Public deployers owe one <em>before go-live</em>.',sub:"Structured well, it’s days — not months."},flag:{sev:"red",txt:"FRIA missing for deployed AI"},score:2},
+    {t:"What's a FRIA?",insight:{h:'The most useful acronym <em>this year</em>.',sub:"Whose rights could this touch, how badly, what guards exist. Required before launch."},flag:{sev:"amber",txt:"FRIA requirement unknown to team"},score:1}]},
+  {k:"story",tag:"True story",h:'Robert Williams was arrested in front of his daughters. The face-match was <em>wrong</em>.',
+   sub:"30 hours in a cell for someone else’s face. When public AI fails, a citizen pays first.",btn:"Next →"},
+  {k:"ask",id:"pub_foi",q:"A journalist FOI-requests your AI use tomorrow. How does it go?",
+   opts:[
+    {t:"Fine, we could answer",insight:{h:'Paper trail exists. <span class="ok">That’s 80% of survival.</span>',sub:"Failures become front pages. Records are the shield."},flag:{sev:"green",txt:"FOI-ready documentation"},score:0},
+    {t:"Uncomfortable",insight:{h:'Uncomfortable in private is fine. <em>In print, it isn’t.</em>',sub:"A few weeks of structured work closes the gap."},flag:{sev:"amber",txt:"FOI response would expose gaps"},score:1},
+    {t:"Honestly, a disaster",insight:{h:'Better to know <em>now</em>.',sub:"Start with the register: what runs, who owns it, what it decides."},flag:{sev:"red",txt:"No defensible record of AI use"},score:2}]},
+  {k:"ask",id:"pub_human",q:"Do staff know which decisions need a human in charge?",
+   opts:[
+    {t:"Yes, it's assigned",insight:{h:'<span class="ok">Excellent</span> — write it down.',sub:"Named oversight is what auditors ask for first."},flag:{sev:"green",txt:"Human oversight assigned"},score:0},
+    {t:"Informally",insight:{h:'Informal oversight <em>evaporates under pressure</em>.',sub:"One workshop + one org-chart note fixes it."},flag:{sev:"amber",txt:"Human oversight informal only"},score:1},
+    {t:"No",insight:{h:'Then the algorithm is <em>quietly in charge</em>.',sub:"Someone must own the override — by name."},flag:{sev:"red",txt:"No assigned human oversight"},score:2}]},
+  {k:"info",kicker:"The good news",
+   h:'Three moves, <em>in order</em>.',
+   sub:"Inventory → impact assessment → oversight chain. Sized for public-sector reality.",btn:"My snapshot →"}
+ ],
+ moves:["Build the AI register: system, decision, owner.","Run the FRIA on anything touching citizens.","Assign and train named human oversight."]},
+
+cur:{label:"I’m just curious",ic:"👀",role:"future-ready — ahead of most",sub:"I want to understand this",
+ mirror:{k:"info",kicker:"You · The curious one",
+  h:'No fire? <em>Perfect.</em> Cheapest seat in the house.',
+  sub:"Guess your way through. Leave knowing more than 90% of people this law covers.",btn:"First guess →"},
+ steps:[
+  {k:"ask",id:"cur_what",q:"Guess: what does the EU AI Act actually do?",
+   opts:[
+    {t:"Bans dangerous AI",insight:{h:'Close — it bans only the <em>worst</em>.',sub:"Social scoring, manipulation, emotion-reading at work. The rest is ranked by risk."},score:0},
+    {t:"Sorts AI by risk",insight:{h:'<span class="ok">Exactly.</span> Four levels, scaling rules.',sub:"More harm possible → more to prove. Most people get this wrong."},score:0},
+    {t:"Regulates Big Tech only",insight:{h:'The <em>opposite</em>.',sub:"It regulates uses, not size. A 5-person startup can carry heavier duties than Google."},score:0}]},
+  {k:"ask",id:"cur_banned",q:"Which is BANNED at work since Feb 2025?",
+   opts:[
+    {t:"Emotion-reading AI",insight:{h:'<span class="ok">Right.</span>',sub:"Software reading your face at work: a line the EU refused to cross."},score:0},
+    {t:"Chatbots",insight:{h:'Chatbots just must <em>say what they are</em>.',sub:"The banned one: emotion-reading at work."},score:0},
+    {t:"CV screening",insight:{h:'Legal — but <em>high-risk</em>.',sub:"The banned one: emotion-reading at work."},score:0}]},
+  {k:"info",kicker:"The whole law, one screen",
+   h:'Four levels. <em>That’s the trick.</em>',
+   sub:"⛔ Banned: social scoring, manipulation. 🔶 High-risk: hiring, credit, health. 🔸 Transparency: chatbots must say so. ▫️ Minimal: spam filters — free to go.",btn:"Next guess →"},
+  {k:"ask",id:"cur_fine",q:"Max fine for the worst violations?",
+   opts:[
+    {t:"€350,000",insight:{h:'Add two zeros: <em>€35 million</em>.',sub:"Or 7% of global revenue — whichever is higher."},score:0},
+    {t:"€3.5 million",insight:{h:'Ten times higher: <em>€35M</em>.',sub:"Or 7% of revenue. Not a fine — a strategy meeting."},score:0},
+    {t:"€35 million",insight:{h:'<span class="ok">Spot on.</span>',sub:"Or 7% of global revenue, whichever is higher. You beat most executives."},score:0}]},
+  {k:"ask",id:"cur_touch",q:"Does your work touch AI anywhere?",
+   opts:[
+    {t:"I use AI tools at work",insight:{h:'Some duties may quietly be <em>yours</em>.',sub:"AI users at work are 'deployers' — with real obligations. Now you know."},flag:{sev:"amber",txt:"Likely a 'deployer' without knowing it"},score:1},
+    {t:"My company builds some",insight:{h:'Someone in your building is a <em>"provider."</em>',sub:"Flag it before Aug 2026. Careers are built on less."},flag:{sev:"amber",txt:"Provider duties likely exist in your org"},score:1},
+    {t:"Not really",insight:{h:'<span class="ok">Today.</span> Check again in six months.',sub:"AI arrives by update, not announcement. Now you’ll spot it."},flag:{sev:"green",txt:"No current exposure — radar now on"},score:0}]},
+  {k:"info",kicker:"The good news",
+   h:'You now beat <em>90%</em> of the people this law covers.',
+   sub:"Risk levels, the banned list, the fine math — most executives can’t recite that.",btn:"My snapshot →"}
+ ],
+ moves:["Forward this to whoever runs AI tools at your work.","Watch for AI features arriving by update.","Keep my contact for when it lands on your desk."]}
+};
+
+/* ================= STATE ================= */
+var state={p:null,i:-1,answers:{},flags:[],score:0,t0:Date.now(),steps:SHARED.slice()};
+var stage=document.getElementById("stage");
+var progEl=document.getElementById("prog");
+var stepcountEl=document.getElementById("stepcount");
+var snapchip=document.getElementById("snapchip");
+var backBtn=document.getElementById("backBtn");
+var SAVE_KEY="eaia_funnel_v1";
+
+function totalSteps(){
+  if(!state.p)return 17; /* representative full-journey length pre-fork */
+  /* asks from the current step onward will each insert one insight screen */
+  var pending=state.steps.slice(state.i).filter(function(s){return s.k==="ask";}).length;
+  return state.steps.length+pending;
+}
+function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify({p:state.p,i:state.i,answers:state.answers,flags:state.flags,score:state.score,ts:Date.now()}));}catch(e){}}
+function clearSave(){try{localStorage.removeItem(SAVE_KEY);}catch(e){}}
+
+function buildSteps(p){
+  var per=PERSONAS[p];
+  return SHARED.slice(0,3).concat([SHARED[3]],[per.mirror],per.steps,[{k:"result"},{k:"cta"}]);
+}
+
+/* ================= RENDER ================= */
+function render(push){
+  var step=state.steps[state.i];
+  if(!step)return;
+  var html="";
+  if(step.k==="info"){html=tplInfo(step);}
+  else if(step.k==="count"){html=tplCount();}
+  else if(step.k==="fork"){html=tplFork();}
+  else if(step.k==="ask"){html=tplAsk(step);}
+  else if(step.k==="insight"){html=tplInsight(step);}
+  else if(step.k==="story"){html=tplStory(step);}
+  else if(step.k==="result"){html=tplResult();}
+  else if(step.k==="cta"){html=tplCta();}
+
+  var card=document.createElement("div");
+  card.className="card";card.innerHTML=html;
+  stage.innerHTML="";stage.appendChild(card);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){card.classList.add("in");});});
+  bind(card,step);
+
+  var idx=state.i+1,tot=totalSteps();
+  progEl.style.width=Math.min(100,Math.round(idx/tot*100))+"%";
+  stepcountEl.textContent=state.p?("Step "+idx+" of "+tot):"";
+  backBtn.classList.toggle("on",state.i>0);
+  snapchip.classList.toggle("on",state.flags.length>0);
+  snapchip.innerHTML="Snapshot: <b>"+state.flags.length+"</b> item"+(state.flags.length===1?"":"s");
+
+  if(push!==false){try{history.pushState({i:state.i,p:state.p},"");}catch(e){}}
+  save();
+  track("step_viewed",{step_index:state.i,step_kind:step.k,step_id:step.id||step.k});
+}
+
+function next(){state.i++;render();}
+
+/* ---------- templates ---------- */
+function tplInfo(s){
+  var hurry="";
+  if(s.extra==="hurry"){
+    hurry='<span class="aside">In a hurry? <a href="#" data-act="calaside">Book the free 20-min call directly →</a> &nbsp;·&nbsp; <a href="index.html" data-act="overview">prefer one page?</a></span>'+
+    '<div class="resume" id="resumeBar"><span></span><button type="button" data-act="resume">Continue →</button><button type="button" data-act="startover" style="color:var(--mute);border-color:var(--mute)">start over</button></div>';
+  }
+  return '<span class="kicker">'+s.kicker+'</span><h1 class="big">'+s.h+'</h1>'+(s.sub?'<p class="sub">'+s.sub+'</p>':"")+'<button class="go" data-act="next">'+(s.btn||"Continue →")+'</button>'+hurry;
+}
+function tplCount(){
+  return '<span class="kicker">Why now</span><h1 class="big">The clock is <em>real</em>.</h1>'+
+  '<div class="cdrow"><div class="n">'+daysLeft()+'</div><div class="c">days until 2 Aug 2026, when most duties bite.</div></div>'+
+  '<p class="sub">Fines reach <strong>€35M or 7% of revenue</strong>. The bigger cost: finding out late.</p>'+
+  '<button class="go" data-act="next">Make it about me →</button>';
+}
+function tplFork(){
+  var btns=Object.keys(PERSONAS).map(function(k){
+    var p=PERSONAS[k];
+    return '<button class="opt" data-act="persona" data-p="'+k+'"><span style="display:flex;align-items:center;gap:12px"><span class="ic">'+p.ic+'</span><span>'+p.label+'<small>'+p.sub+'</small></span></span><span class="arr">→</span></button>';
+  }).join("");
+  return '<span class="kicker">Now it gets personal</span><h1 class="big">Which one is <em>you?</em></h1><p class="sub">Pick the closest. Everything after this is written for you.</p><div class="fork">'+btns+'</div>';
+}
+function tplAsk(s){
+  var qn=state.steps.slice(0,state.i+1).filter(function(x){return x.k==="ask";}).length;
+  var qt=state.steps.filter(function(x){return x.k==="ask";}).length;
+  var opts=s.opts.map(function(o,j){
+    return '<button class="opt" data-act="answer" data-j="'+j+'">'+esc(o.t)+(o.sub?'<small>'+esc(o.sub)+'</small>':"")+'<span class="arr">→</span></button>';
+  }).join("");
+  return '<span class="kicker">Question '+qn+' of '+qt+'</span><h1 class="big" style="font-size:clamp(26px,5vw,42px)">'+esc(s.q)+'</h1>'+(s.sub?'<p class="sub">'+esc(s.sub)+'</p>':"")+'<div class="btnrow">'+opts+'</div>';
+}
+function tplInsight(s){
+  var fl=s.flag?'<br/><span class="flagnote '+s.flag.sev+'">⚑ added to your snapshot</span>':"";
+  return '<span class="youSaid">You said: <b>'+esc(s.answered)+'</b></span><h1 class="big">'+s.insight.h+'</h1><p class="sub">'+s.insight.sub+'</p>'+fl+'<br/><button class="go" data-act="next">Continue →</button>';
+}
+function tplStory(s){
+  return '<span class="storytag">'+s.tag+'</span><h1 class="big" style="font-size:clamp(26px,5vw,42px)">'+s.h+'</h1><p class="sub">'+s.sub+'</p><button class="go" data-act="next">'+(s.btn||"Continue →")+'</button>';
+}
+function levelOf(){
+  var reds=state.flags.filter(function(f){return f.sev==="red";}).length;
+  if(state.score>=5||reds>=2)return{cls:"red",t:"Act before August 2."};
+  if(state.score>=2||reds>=1)return{cls:"amber",t:"Real gaps — very closeable."};
+  return{cls:"green",t:"Ahead of the pack. Keep it that way."};
+}
+function tplResult(){
+  var per=PERSONAS[state.p],lv=levelOf();
+  var flags=state.flags.map(function(f){return '<div class="flag '+f.sev+'"><i></i><span>'+esc(f.txt)+'</span></div>';}).join("")||'<div class="flag green"><i></i><span>No flags from your answers. Clean snapshot.</span></div>';
+  var moves=per.moves.map(function(m){return "<li>"+esc(m)+"</li>";}).join("");
+  return '<span class="kicker">Your snapshot · built from your answers</span>'+
+  '<span class="rolebadge">Your likely role: '+per.role+'</span>'+
+  '<div class="verdict '+lv.cls+'">'+lv.t+'</div>'+
+  '<div class="flags">'+flags+'</div>'+
+  '<span class="kicker" style="margin-top:8px">Your first three moves</span><ol class="moves">'+moves+'</ol>'+
+  '<p class="smallprint">A sketch, not legal advice. '+daysLeft()+' days to do the real version cheaply.</p>'+
+  '<button class="go" data-act="next">So what now? →</button>'+
+  '<span class="aside"><button type="button" data-act="copysnap">⧉ Copy my snapshot</button></span>';
+}
+function tplCta(){
+  var mref="mailto:"+EMAIL+"?subject="+encodeURIComponent("EU AI Act — a question about my snapshot")+"&body="+encodeURIComponent("Hi Etienne,\n\nMy question:\n\n\n— — — — —\n"+snapshotText());
+  return '<span class="kicker">Your next step</span>'+
+  '<h1 class="big">20 minutes. Free. About <em>your</em> answers.</h1>'+
+  '<p class="sub">I’ll have your snapshot in front of me — what’s urgent, what’s noise, what to do first. Can’t help? I’ll say so in minute five.</p>'+
+  '<button class="go" data-act="book" data-cal-namespace="review" data-cal-link="'+CAL_LINK+'" data-cal-config=\'{"layout":"month_view"}\'>Book the free call →</button>'+
+  '<p class="sub" style="margin-top:26px">Rather not call? <strong>Just write to me.</strong> Your snapshot is already in the email — add your question and hit send.</p>'+
+  '<a class="go ghost" data-act="writeme" href="'+mref+'">Email me →</a>'+
+  '<span class="aside"><button type="button" data-act="copysnap">⧉ Copy my snapshot</button> &nbsp;·&nbsp; <button type="button" data-act="other">try another path</button> &nbsp;·&nbsp; <a href="index.html" data-act="overview">one-page version</a></span>';
+}
+
+/* ---------- snapshot text ---------- */
+function snapshotText(){
+  var per=PERSONAS[state.p],lv=levelOf();
+  var L=[];
+  L.push("MY EU AI ACT SNAPSHOT — "+per.label);
+  L.push("Verdict: "+lv.t+" ("+daysLeft()+" days to 2 Aug 2026)");
+  L.push("Likely role: "+per.role);L.push("");
+  L.push("Flags:");state.flags.forEach(function(f){L.push(" ["+f.sev.toUpperCase()+"] "+f.txt);});
+  L.push("");L.push("First three moves:");per.moves.forEach(function(m,i){L.push(" "+(i+1)+". "+m);});
+  L.push("");L.push("Free 20-min review: https://cal.com/"+CAL_LINK);
+  L.push("Etienne Byiringiro · "+EMAIL+" · ishi-eu-ai-act.vercel.app");
+  return L.join("\n");
+}
+
+/* ================= EVENTS ================= */
+function bind(card,step){
+  card.addEventListener("click",function(e){
+    var el=e.target.closest("[data-act]");if(!el)return;
+    var act=el.getAttribute("data-act");
+    if(act==="next"){next();}
+    else if(act==="persona"){
+      var p=el.getAttribute("data-p");
+      state.p=p;state.steps=buildSteps(p);state.i=4; /* mirror index */
+      track("persona_selected",{choice:p});render();
+    }
+    else if(act==="answer"){
+      e.preventDefault();
+      var j=+el.getAttribute("data-j"),o=step.opts[j];
+      el.classList.add("picked");
+      state.answers[step.id]=o.t;
+      if(o.flag&&!state.flags.some(function(f){return f.txt===o.flag.txt;})){state.flags.push(o.flag);}
+      state.score+=o.score||0;
+      track("answer_given",{question_id:step.id,answer:o.t,score:o.score||0});
+      var ins={k:"insight",insight:o.insight,flag:o.flag,answered:o.t,id:step.id+"_insight"};
+      state.steps.splice(state.i+1,0,ins);
+      setTimeout(next,260);
+    }
+    else if(act==="book"){
+      track("book_clicked",{from:"cta",score:state.score});
+      /* Cal popup attaches via data-cal-link attrs; nothing else to do */
+    }
+    else if(act==="calaside"){
+      e.preventDefault();track("book_clicked",{from:"hook"});
+      var b=document.createElement("button");
+      b.setAttribute("data-cal-namespace","review");b.setAttribute("data-cal-link",CAL_LINK);b.setAttribute("data-cal-config",'{"layout":"month_view"}');
+      b.style.display="none";document.body.appendChild(b);b.click();setTimeout(function(){b.remove();},800);
+    }
+    else if(act==="writeme"){copyText(EMAIL);toast("✓ "+EMAIL+" copied — opening your mail app…");track("email_clicked",{from:"cta"});}
+    else if(act==="copysnap"){copyText(snapshotText());toast("✓ Snapshot copied — paste it anywhere");track("snapshot_copied",{});}
+    else if(act==="mailme"){copyText(EMAIL);toast("✓ "+EMAIL+" copied");track("email_clicked",{});}
+    else if(act==="other"){track("restart",{kind:"another_path"});resetTo(3);}
+    else if(act==="overview"){track("overview_clicked",{});}
+    else if(act==="resume"){var s=pendingResume;if(s){state.p=s.p;state.steps=buildSteps(s.p);state.i=s.i;state.answers=s.answers||{};state.flags=s.flags||[];state.score=s.score||0;track("resumed",{at:s.i});render();}}
+    else if(act==="startover"){clearSave();document.getElementById("resumeBar").classList.remove("on");toast("Fresh start ✓");}
+  });
+  if(step.k==="result"){track("result_viewed",{verdict:levelOf().cls,score:state.score,flags:state.flags.length,duration_s:Math.round((Date.now()-state.t0)/1000)});}
+  if(step.k==="cta"){track("cta_viewed",{verdict:levelOf().cls});}
+}
+
+function resetTo(i){state.p=null;state.steps=SHARED.slice();state.i=i;state.answers={};state.flags=[];state.score=0;render();}
+
+document.getElementById("restartBtn").addEventListener("click",function(){track("restart",{kind:"full"});clearSave();state.t0=Date.now();resetTo(0);});
+backBtn.addEventListener("click",function(){if(state.i>0){state.i--;render(false);}});
+window.addEventListener("popstate",function(e){if(e.state&&typeof e.state.i==="number"){if(e.state.p&&e.state.p!==state.p){state.p=e.state.p;state.steps=buildSteps(e.state.p);}else if(!e.state.p){state.p=null;state.steps=SHARED.slice();}state.i=e.state.i;render(false);}});
+document.addEventListener("keydown",function(e){
+  if(e.key==="Enter"){var g=stage.querySelector(".go[data-act='next']");if(g){g.click();}}
+  if(e.key>="1"&&e.key<="5"){var os=stage.querySelectorAll(".opt");var k=+e.key-1;if(os[k]){os[k].click();}}
+});
+
+/* ================= BOOT ================= */
+var pendingResume=null;
+try{
+  var saved=JSON.parse(localStorage.getItem(SAVE_KEY)||"null");
+  if(saved&&saved.p&&saved.i>4&&(Date.now()-saved.ts)<7*86400000){pendingResume=saved;}
+}catch(e){}
+track("funnel_start",{returning:!!pendingResume});
+state.i=0;render(false);
+try{history.replaceState({i:0,p:null},"");}catch(e){}
+if(pendingResume){
+  var bar=document.getElementById("resumeBar");
+  if(bar){bar.classList.add("on");bar.querySelector("span").textContent="Welcome back — you were on step "+(pendingResume.i+1)+" of the "+PERSONAS[pendingResume.p].label+" path.";}
+}
+})();
+</script>
+</body>
+</html>
