@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="robots" content="noindex"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--paper:#EEE6D3;--ink:#1A1410;--ink2:#3A2F25;--mute:#6B5C4A;--red:#B83228}
+html,body{width:1200px;height:630px}
+body{background:var(--paper);font-family:"Poppins",system-ui,sans-serif;overflow:hidden}
+.card{position:relative;width:1200px;height:630px;padding:62px 70px;display:flex;flex-direction:column;justify-content:space-between}
+.card::after{content:"";position:absolute;inset:22px;border:1px solid #1A141033;pointer-events:none}
+.top{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:18px}
+.eb{width:64px;height:64px;background:var(--red);color:#F8F1DD;font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:31px;display:flex;align-items:center;justify-content:center}
+.name{font-family:"JetBrains Mono",monospace;font-size:20px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);font-weight:700;line-height:1.35}
+.name span{display:block;font-size:12.5px;letter-spacing:.19em;color:var(--mute);font-weight:500}
+.chip{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.27em;text-transform:uppercase;background:var(--red);color:#F8F1DD;padding:10px 17px}
+.h{font-family:"Fraunces",Georgia,serif;font-weight:340;font-size:83px;line-height:1.02;letter-spacing:-.02em;color:var(--ink)}
+.h em{font-style:italic;color:var(--red);font-weight:380}
+.sub{margin-top:26px;font-size:27px;line-height:1.4;color:var(--ink2);max-width:31ch}
+.bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #1A141033;padding-top:24px}
+.bl{font-family:"JetBrains Mono",monospace;font-size:17px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.bl b{color:var(--red);font-weight:700}
+.br{font-family:"JetBrains Mono",monospace;font-size:16px;letter-spacing:.04em;color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top">
+    <div class="brand">
+      <div class="eb">EB</div>
+      <div class="name">Etienne Byiringiro<span>EU AI Act readiness · Warsaw</span></div>
+    </div>
+    <div class="chip">AI Governance</div>
+  </div>
+  <div class="mid">
+    <div class="h">Is your company ready<br/>for the <em>EU AI Act?</em></div>
+    <div class="sub">Find out where you stand — and what to do before 2 August 2026.</div>
+  </div>
+  <div class="bottom">
+    <div class="bl"><b>Free</b> 3-minute check</div>
+    <div class="br">ishi-eu-ai-act.vercel.app</div>
+  </div>
+</div>
+</body>
+</html>
