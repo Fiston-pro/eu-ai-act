@@ -1,60 +1,57 @@
-# Etienne Byiringiro · EU AI Act
+# Ishimwe Etienne · EU AI Act
 
-Consulting site for **EU AI Act readiness & AI governance**, live at
-[ishi-eu-ai-act.vercel.app](https://ishi-eu-ai-act.vercel.app).
+Consulting site for **EU AI Act compliance**, live at
+[ishi-eu-ai-act.vercel.app](https://ishi-eu-ai-act.vercel.app). Plain English,
+no legal jargon. Two services: **AI literacy training** and a **compliance audit**.
 
 ## Pages
 
 | File | Role |
 |---|---|
-| `index.html` | **Homepage** — static, server-rendered content (crawlable by search & AI engines). Who I am, what the EU AI Act is, the four risk levels, services, recent-work/trust, FAQ teaser, contact. Primary CTA → the interactive check. |
-| `check.html` | The **interactive 3-minute check** (the funnel). Progressive enhancement — full JS app. Has a `<noscript>` fallback to the homepage. |
-| `faq.html` | **FAQ** — six question-headed answers (applies-to-me, HR high-risk, edtech high-risk, provider vs deployer, the 2026 deadline, fines) with `FAQPage` structured data. Built to be quotable by AI search. |
-| `overview.html` | Redirect stub → `/` (the old one-pager URL; content now lives on the homepage). |
-| `funnel-map.html` | Internal planning diagram of the funnel (not linked publicly). |
-| `sample-audit.pdf` | **Placeholder** sample deliverable — replace with a real redacted report. |
-| `robots.txt`, `sitemap.xml` | Crawl directives (AI crawlers explicitly allowed) + sitemap. |
+| `index.html` | **Homepage** (static, crawlable). The "Do you like reading the EU AI Act?" hero (rebuilt in code, the "Try us" button starts the flow), who it covers, what the Act is, the four ranks, the two services, FAQ teaser. |
+| `check.html` | The **guided flow**. One idea per screen: who is covered, what it is, the deadline + timeline, fines vs GDPR, the four ranks, the two services, then a short industry quiz and a tailored "what you need" list. Restart on top, booking only at the end. |
+| `about.html` | **About** Ishi: why I do this, the goal (all-in-one AI governance), why the law matters, LinkedIn. |
+| `faq.html` | **FAQ**, six question-headed answers with `FAQPage` structured data. |
+| `overview.html` | Redirect to `/` (old URL). |
+| `og.png` / `og-source.html` | Social share image (1200x630) and its source (re-render with Playwright). |
+| `robots.txt`, `sitemap.xml` | Crawl directives (AI crawlers allowed) + sitemap. |
+| `sample-audit.pdf` | Placeholder sample deliverable (not currently linked on the site). |
+| `funnel-map.html` | Internal planning sketch (not linked). |
 
-## Why two layers (content + check)
+## Brand
 
-Search engines and AI engines (ChatGPT, Perplexity, Google AI Overviews) read
-the **raw HTML**. The homepage is fully static so its text is in "view source",
-not injected by JS. The interactive check is layered on top at `/check.html` as
-progressive enhancement — great for humans, never required to read the content.
+- Name: **Ishimwe Etienne** (Ishi). No em dashes anywhere. Plain words.
+- Colours: paper `#EEE6D3`, ink `#1A1410`, red `#B83228`. Fonts: Fraunces, Poppins, JetBrains Mono.
 
 ## SEO / GEO
 
-- Unique `<title>` + meta description per page; canonical URLs; Open Graph + Twitter tags.
-- JSON-LD: `Person` + `ProfessionalService` + `WebSite` on the homepage; `FAQPage` on the FAQ.
-- `robots.txt` allows all crawlers, including GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.
-- `sitemap.xml` lists the homepage, FAQ, and check.
-- Visible "Last updated" date on content pages.
+- Per-page title, description, canonical, Open Graph + Twitter (with `og.png`).
+- JSON-LD: `Person` + `ProfessionalService` (+ service catalog) + `WebSite` on the homepage; `Person` on About; `FAQPage` on the FAQ.
+- `robots.txt` allows all crawlers including GPTBot, ClaudeBot, PerplexityBot, Google-Extended.
+- `sitemap.xml` lists home, FAQ, About, check.
 
 > Base URL is hard-coded as `https://ishi-eu-ai-act.vercel.app`. If you add a
-> custom domain, update it in the canonical/OG tags, JSON-LD, `robots.txt`,
-> and `sitemap.xml`.
+> custom domain, update it in the canonical/OG tags, JSON-LD, robots, and sitemap.
 
-## Configuration
+## Config
 
-- **Booking:** Cal.com slug `etienne-ishi/20min` (in each page's small script).
-- **Email:** `etienne.ishi@gmail.com`.
-- **Analytics:** PostHog (US) is wired in `check.html` (`PH_KEY`). Events:
-  `funnel_start, persona_selected, answer_given, result_viewed, book_clicked, email_clicked`.
-- **Share image:** add a real `og.png` (1200×630) and uncomment the `og:image` tags in `index.html`.
+- Booking: Cal.com `etienne-ishi/20min`. Email: `etienne.ishi@gmail.com`.
+- Analytics: PostHog (US) in `check.html`. Events: `flow_start, step_viewed, industry_selected, answer, result_viewed, book_clicked`.
 
-## To replace (placeholders)
+## Re-render the og image
 
-- `sample-audit.pdf` — a real redacted sample report.
-- The `CASE STUDY` and `TESTIMONIAL` placeholders in `index.html` (search those comments). Do not invent — fill with genuine work.
+```bash
+NODE_PATH=/path/to/global/node_modules node shot.js   # renders og-source.html -> og.png at 1200x630
+```
 
 ## Run / deploy
 
 ```bash
-python3 -m http.server 8000   # http://localhost:8000
+python3 -m http.server 8000
 ```
 
-Static — deploys as-is on Vercel (production branch: `main`).
+Static, deploys as-is on Vercel (production branch: `main`).
 
 ## Contact
 
-etienne.ishi@gmail.com · [LinkedIn](https://www.linkedin.com/in/ishimwe-byiringiro-etienne/) · Warsaw, Poland
+etienne.ishi@gmail.com · [LinkedIn](https://www.linkedin.com/in/ishimwe-byiringiro-etienne/) · Warsaw
