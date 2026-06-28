@@ -26,9 +26,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Person","@id":"https://ishi-eu-ai-act.vercel.app/#ishi","name":"Ishimwe Etienne","alternateName":"Ishi","jobTitle":"Engineer · AI governance & EU AI Act compliance","url":"https://ishi-eu-ai-act.vercel.app/","email":"etienne.ishi@gmail.com","sameAs":["https://www.linkedin.com/in/ishimwe-byiringiro-etienne/"],"address":{"@type":"PostalAddress","addressLocality":"Warsaw","addressCountry":"PL"},"knowsAbout":["EU AI Act","AI governance","AI literacy training","High-risk AI systems","Annex III","Article 4"]},
+{"@type":"Person","@id":"https://ishi-eu-ai-act.vercel.app/#ishi","name":"Ishimwe Etienne","alternateName":"Ishi","jobTitle":"Engineer · AI governance & EU AI Act compliance","url":"https://ishi-eu-ai-act.vercel.app/","email":"etienne.ishi@gmail.com","sameAs":["https://www.linkedin.com/in/ishimwe-byiringiro-etienne/"],"address":{"@type":"PostalAddress","addressCountry":"PL"},"knowsAbout":["EU AI Act","AI governance","AI literacy training","High-risk AI systems","Annex III","Article 4"]},
 {"@type":"ProfessionalService","@id":"https://ishi-eu-ai-act.vercel.app/#service","name":"Ishimwe Etienne · EU AI Act compliance","description":"AI literacy training and EU AI Act compliance audits for companies that build or use AI.","url":"https://ishi-eu-ai-act.vercel.app/","provider":{"@id":"https://ishi-eu-ai-act.vercel.app/#ishi"},"areaServed":[{"@type":"Place","name":"European Union"},{"@type":"Country","name":"Poland"}],"serviceType":"EU AI Act compliance and AI governance","email":"etienne.ishi@gmail.com","hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI literacy training","description":"Article 4 staff training: 60 to 90 minute session, slides, company AI policy guidance, quiz, certificate, attendance records, annual refresher."}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"EU AI Act compliance audit","description":"AI inventory, risk classification, gap analysis, compliance report and action plan."}}]}},
 {"@type":"WebSite","@id":"https://ishi-eu-ai-act.vercel.app/#website","url":"https://ishi-eu-ai-act.vercel.app/","name":"Ishimwe Etienne · EU AI Act","inLanguage":"en"}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does the EU AI Act apply to my company?","acceptedAnswer":{"@type":"Answer","text":"Probably yes, if you build, sell, or use AI and it affects people in the EU, even from outside the EU (Article 2). It covers providers, who make AI, and deployers, who use it. Bought tools count too."}},
+{"@type":"Question","name":"Is my HR or hiring AI high risk?","acceptedAnswer":{"@type":"Answer","text":"Usually yes. Recruitment and people decisions are listed as high risk (Annex III point 4), with duties like human oversight, candidate transparency and bias checks. Reading emotions at work is banned outright (Article 5)."}},
+{"@type":"Question","name":"Provider or deployer, which am I?","acceptedAnswer":{"@type":"Answer","text":"A provider makes AI and ships it under its own name (Article 3(3), heaviest duties). A deployer uses AI at work (Article 3(4), lighter duties). Put your name on a tool or change it and you can become the provider (Article 25)."}},
+{"@type":"Question","name":"What do I need before 2 August 2026?","acceptedAnswer":{"@type":"Answer","text":"That is when most rules start (Article 113). Inventory your AI, classify each system, close the gaps on high-risk ones, and add the Article 50 disclosures for chatbots and AI content."}},
+{"@type":"Question","name":"What are the EU AI Act fines?","acceptedAnswer":{"@type":"Answer","text":"Up to 35 million euro or 7% of global turnover for banned uses, up to 15 million euro or 3% for most other breaches, up to 7.5 million euro or 1% for bad information (Article 99). SMEs pay the lower of the two."}},
+{"@type":"Question","name":"Why you, and not a lawyer?","acceptedAnswer":{"@type":"Answer","text":"Most of this is engineering, not legal opinion: classifying systems, writing documentation, building oversight. I flag clearly when you need a lawyer and can bring one in for sign-off."}}
 ]}
 </script>
 <style>
@@ -71,8 +81,10 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
 .r2{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
 .dont{border:2px solid var(--ink);border-radius:4px;padding:14px 18px;font-family:"JetBrains Mono",monospace;font-size:clamp(14px,2.6vw,18px);color:var(--ink)}
 .to{font-size:22px;color:var(--ink)}
-.tryus{display:inline-block;background:var(--red);color:#F8F1DD;text-decoration:none;border:2px solid #7d2017;border-radius:6px;padding:15px 32px;font-family:"Poppins",sans-serif;font-weight:700;font-size:clamp(18px,3.2vw,24px);box-shadow:0 0 0 4px #B8322822,0 8px 22px #B8322833}
-.tryus:hover{transform:translateY(-2px)}
+.tryus{display:inline-block;background:var(--red);color:#F8F1DD;text-decoration:none;border:2px solid #7d2017;border-radius:6px;padding:15px 32px;font-family:"Poppins",sans-serif;font-weight:700;font-size:clamp(18px,3.2vw,24px);box-shadow:0 0 0 4px #B8322822,0 8px 22px #B8322833;animation:bounce 1.5s ease-in-out infinite}
+.tryus:hover{transform:translateY(-2px) scale(1.03);animation-play-state:paused}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@media(prefers-reduced-motion:reduce){.tryus{animation:none}}
 @media(max-width:560px){.r2{flex-direction:column;gap:10px}.to{transform:rotate(90deg)}}
 
 /* one-liner sections */
@@ -98,11 +110,13 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
 .card li{position:relative;padding-left:20px;font-size:15px;color:var(--ink2);flex:1 1 40%;min-width:180px}
 .card li::before{content:"✓";position:absolute;left:0;color:var(--olive);font-weight:700}
 
-.faqlinks{list-style:none;margin:14px 0 4px}
-.faqlinks li{border-bottom:1px solid var(--rule)}
-.faqlinks a{display:block;padding:12px 0;color:var(--ink);text-decoration:none;font-family:"Fraunces",serif;font-size:clamp(16px,2.2vw,19px);font-weight:440}
-.faqlinks a:hover{color:var(--red)}
-.faqlinks a::after{content:" →";font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--mute)}
+.acc details{border-bottom:1px solid var(--rule)}
+.acc summary{cursor:pointer;list-style:none;padding:15px 0;font-family:"Fraunces",serif;font-size:clamp(17px,2.4vw,20px);font-weight:440;color:var(--ink);display:flex;justify-content:space-between;gap:14px;align-items:center}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";font-family:"JetBrains Mono",monospace;color:var(--red);font-size:21px;flex:none;line-height:1}
+.acc details[open] summary::after{content:"\2013"}
+.acc details p{padding:0 0 16px;max-width:62ch;color:var(--ink2);font-size:15.5px;margin:0}
+.acc details p strong{color:var(--ink)}
 
 .foot{margin-top:42px;padding-top:22px;border-top:1px solid var(--rule);font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--mute);line-height:1.9}
 .foot a{color:var(--olive);text-decoration:none}
@@ -111,7 +125,7 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
 <body>
 <nav class="nav"><div class="in">
   <a class="brand" href="index.html">Ishimwe Etienne</a>
-  <span class="links"><a href="about.html">About</a><a href="faq.html">FAQ</a><a class="start" href="check.html">Start</a></span>
+  <span class="links"><a href="about.html">About</a><a href="#faq">FAQ</a></span>
 </div></nav>
 
 <main class="wrap">
@@ -131,9 +145,7 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
         <a class="tryus" href="check.html">Try us</a>
       </div>
     </div>
-    <p style="margin:30px auto 0;max-width:46ch">Nobody has time to read 450 pages of law. I do that part. You get a clear answer and exactly what to do next.</p>
-    <a class="cta" href="check.html">Let's start</a>
-    <span class="subcta">Two minutes. No sign-up. <a href="about.html">Or meet the person behind this</a></span>
+    <span class="subcta" style="margin-top:30px">Or <a href="#book" class="book" data-subject="EU AI Act, let's talk">go straight to a meeting with us</a></span>
   </section>
 
   <!-- WHO IS COVERED -->
@@ -193,27 +205,36 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
         </ul>
       </div>
     </div>
-    <a class="cta" href="check.html" style="margin-top:20px">See what you need</a>
   </section>
 
-  <!-- FAQ TEASER -->
-  <section>
+  <!-- FAQ ACCORDION -->
+  <section id="faq">
     <span class="label">Common questions</span>
-    <h2>Quick answers</h2>
-    <ul class="faqlinks">
-      <li><a href="faq.html#applies">Does the EU AI Act apply to my company?</a></li>
-      <li><a href="faq.html#hr">Is my HR or hiring AI high risk?</a></li>
-      <li><a href="faq.html#deadline">What do I need before 2 August 2026?</a></li>
-      <li><a href="faq.html#fines">What are the fines?</a></li>
-    </ul>
-    <a class="cta ghost" href="faq.html" style="margin-top:8px">Read the FAQ</a>
+    <h2>Quick <em>answers</em></h2>
+    <div class="acc">
+      <details><summary>Does the EU AI Act apply to my company?</summary><p>Probably yes, if you build, sell, or use AI and it affects people in the EU, even from outside the EU (Article 2). It covers providers, who make AI, and deployers, who use it. Bought tools count too.</p></details>
+      <details><summary>Is my HR or hiring AI high risk?</summary><p>Usually yes. Recruitment and people decisions are listed as high risk (Annex III point 4), with duties like human oversight, candidate transparency and bias checks. Reading emotions at work is banned outright (Article 5).</p></details>
+      <details><summary>Provider or deployer, which am I?</summary><p>A provider makes AI and ships it under its own name (Article 3(3), heaviest duties). A deployer uses AI at work (Article 3(4), lighter duties). Put your name on a tool or change it and you can become the provider (Article 25).</p></details>
+      <details><summary>What do I need before 2 August 2026?</summary><p>That is when most rules start (Article 113). Inventory your AI, classify each system, close the gaps on high-risk ones, and add the Article 50 disclosures for chatbots and AI content.</p></details>
+      <details><summary>What are the fines?</summary><p>Up to €35M or 7% of global turnover for banned uses, up to €15M or 3% for most other breaches, up to €7.5M or 1% for bad information (Article 99). SMEs pay the lower of the two.</p></details>
+      <details><summary>Why you, and not a lawyer?</summary><p>Most of this is engineering, not legal opinion: classifying systems, writing documentation, building oversight. I flag clearly when you need a lawyer and can bring one in for sign-off.</p></details>
+    </div>
   </section>
 
   <div class="foot">
-    Ishimwe Etienne · EU AI Act compliance &amp; AI governance · Warsaw, serving the EU<br/>
-    <a href="about.html">About</a> · <a href="check.html">Start the check</a> · <a href="faq.html">FAQ</a> · <a href="mailto:etienne.ishi@gmail.com">etienne.ishi@gmail.com</a> · <a href="https://www.linkedin.com/in/ishimwe-byiringiro-etienne/">LinkedIn</a><br/>
+    Ishimwe Etienne · EU AI Act compliance &amp; AI governance · Poland, serving the EU<br/>
+    <a href="about.html">About</a> · <a href="check.html">Start the check</a> · <a href="#faq">FAQ</a> · <a href="mailto:etienne.ishi@gmail.com">etienne.ishi@gmail.com</a> · <a href="https://www.linkedin.com/in/ishimwe-byiringiro-etienne/">LinkedIn</a><br/>
     <span style="color:var(--mute)">Last updated 28 June 2026 · General information, not legal advice.</span>
   </div>
 </main>
+<script>
+(function(){
+  var CAL_LINK="etienne-ishi/20min";
+  (function(C,A,L){var p=function(a,ar){a.q.push(ar);};var d=C.document;C.Cal=C.Cal||function(){var cal=C.Cal;var ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){var api=function(){p(api,arguments);};var ns=ar[1];api.q=api.q||[];if(typeof ns==="string"){cal.ns[ns]=cal.ns[ns]||api;p(cal.ns[ns],ar);p(cal,["initNamespace",ns]);}else p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
+  window.Cal("init","review",{origin:"https://cal.com"});
+  window.Cal.ns["review"]("ui",{hideEventTypeDetails:false,layout:"month_view"});
+  document.querySelectorAll('.book').forEach(function(b){b.setAttribute('data-cal-namespace','review');b.setAttribute('data-cal-link',CAL_LINK);b.setAttribute('data-cal-config','{"layout":"month_view"}');});
+})();
+</script>
 </body>
 </html>

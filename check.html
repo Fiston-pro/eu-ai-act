@@ -53,16 +53,16 @@ body{background:var(--paper);color:var(--ink);font-family:"Poppins",system-ui,-a
 
 /* countdown + timeline */
 .cd{display:flex;align-items:baseline;gap:14px;margin:6px 0 18px;flex-wrap:wrap}
-.cd .n{font-family:"Fraunces",serif;font-weight:300;font-size:clamp(54px,12vw,92px);line-height:.85;color:var(--red);letter-spacing:-.04em}
+.cd .n{font-family:"Fraunces",serif;font-weight:300;font-size:clamp(46px,9vw,72px);line-height:.85;color:var(--red);letter-spacing:-.04em}
 .cd .c{font-family:"Fraunces",serif;font-style:italic;font-size:17px;color:var(--ink2);max-width:16ch}
-.tl{display:flex;overflow-x:auto;gap:0;padding:6px 0 10px;-webkit-overflow-scrolling:touch}
-.tl .ev{flex:0 0 auto;min-width:128px;padding:14px 16px 0 0;border-top:2px solid var(--rule2);position:relative}
-.tl .ev::before{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;border-radius:50%;background:var(--mute)}
+.tl{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0 2px}
+.tl .ev{flex:1 1 0;min-width:90px;padding:10px 6px 0 0;border-top:2px solid var(--rule2);position:relative}
+.tl .ev::before{content:"";position:absolute;top:-6px;left:0;width:9px;height:9px;border-radius:50%;background:var(--mute)}
 .tl .ev.hot::before{background:var(--red);box-shadow:0 0 0 4px #B8322822}
 .tl .ev.hot{border-top-color:var(--red)}
-.tl .dt{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.tl .dt{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
 .tl .ev.hot .dt{color:var(--red);font-weight:600}
-.tl .tx{font-family:"Fraunces",serif;font-size:15px;line-height:1.2;margin-top:4px}
+.tl .tx{font-family:"Fraunces",serif;font-size:13px;line-height:1.16;margin-top:3px}
 
 /* fines bars */
 .bars{margin:10px 0 6px;display:flex;flex-direction:column;gap:14px}
@@ -106,7 +106,10 @@ body{background:var(--paper);color:var(--ink);font-family:"Poppins",system-ui,-a
   <div class="track"><i id="prog"></i></div>
   <div class="meta">
     <a class="brand" href="index.html">Ishimwe Etienne</a>
-    <button class="restart" id="restartBtn" type="button">↺ Restart</button>
+    <span style="display:flex;gap:16px;align-items:center">
+      <a class="restart" href="index.html" style="text-decoration:none">⌂ Home</a>
+      <button class="restart" id="restartBtn" type="button">↺ Restart</button>
+    </span>
   </div>
 </header>
 

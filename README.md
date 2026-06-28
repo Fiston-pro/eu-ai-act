@@ -11,7 +11,7 @@ no legal jargon. Two services: **AI literacy training** and a **compliance audit
 | `index.html` | **Homepage** (static, crawlable). The "Do you like reading the EU AI Act?" hero (rebuilt in code, the "Try us" button starts the flow), who it covers, what the Act is, the four ranks, the two services, FAQ teaser. |
 | `check.html` | The **guided flow**. One idea per screen: who is covered, what it is, the deadline + timeline, fines vs GDPR, the four ranks, the two services, then a short industry quiz and a tailored "what you need" list. Restart on top, booking only at the end. |
 | `about.html` | **About** Ishi: why I do this, the goal (all-in-one AI governance), why the law matters, LinkedIn. |
-| `faq.html` | **FAQ**, six question-headed answers with `FAQPage` structured data. |
+| `faq.html` | Redirect to `/#faq`. The FAQ is now an accordion on the homepage (with `FAQPage` structured data on `index.html`). |
 | `overview.html` | Redirect to `/` (old URL). |
 | `og.png` / `og-source.html` | Social share image (1200x630) and its source (re-render with Playwright). |
 | `robots.txt`, `sitemap.xml` | Crawl directives (AI crawlers allowed) + sitemap. |
