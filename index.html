@@ -27,7 +27,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Person","@id":"https://ishi-eu-ai-act.vercel.app/#ishi","name":"Ishimwe Etienne","alternateName":"Ishi","jobTitle":"Engineer · AI governance & EU AI Act compliance","url":"https://ishi-eu-ai-act.vercel.app/","email":"etienne.ishi@gmail.com","sameAs":["https://www.linkedin.com/in/ishimwe-byiringiro-etienne/"],"address":{"@type":"PostalAddress","addressCountry":"PL"},"knowsAbout":["EU AI Act","AI governance","AI literacy training","High-risk AI systems","Annex III","Article 4"]},
-{"@type":"ProfessionalService","@id":"https://ishi-eu-ai-act.vercel.app/#service","name":"Ishimwe Etienne · EU AI Act compliance","description":"AI literacy training and EU AI Act compliance audits for companies that build or use AI.","url":"https://ishi-eu-ai-act.vercel.app/","provider":{"@id":"https://ishi-eu-ai-act.vercel.app/#ishi"},"areaServed":[{"@type":"Place","name":"European Union"},{"@type":"Country","name":"Poland"}],"serviceType":"EU AI Act compliance and AI governance","email":"etienne.ishi@gmail.com","hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI literacy training","description":"Article 4 staff training: 60 to 90 minute session, slides, company AI policy guidance, quiz, certificate, attendance records, annual refresher."}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"EU AI Act compliance audit","description":"AI inventory, risk classification, gap analysis, compliance report and action plan."}}]}},
+{"@type":"ProfessionalService","@id":"https://ishi-eu-ai-act.vercel.app/#service","name":"Ishimwe Etienne · EU AI Act compliance","description":"AI literacy training and EU AI Act compliance audits for companies that build or use AI.","url":"https://ishi-eu-ai-act.vercel.app/","provider":{"@id":"https://ishi-eu-ai-act.vercel.app/#ishi"},"areaServed":[{"@type":"Place","name":"European Union"},{"@type":"Country","name":"Poland"}],"serviceType":"EU AI Act compliance and AI governance","email":"etienne.ishi@gmail.com","hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","price":"450","priceCurrency":"EUR","itemOffered":{"@type":"Service","name":"AI literacy training","description":"Article 4 staff training: 60 to 90 minute session, slides, company AI policy guidance, quiz, certificate, attendance records, annual refresher."}},{"@type":"Offer","price":"1200","priceCurrency":"EUR","itemOffered":{"@type":"Service","name":"EU AI Act compliance audit","description":"AI inventory, risk classification, gap analysis, compliance report and action plan."}}]}},
 {"@type":"WebSite","@id":"https://ishi-eu-ai-act.vercel.app/#website","url":"https://ishi-eu-ai-act.vercel.app/","name":"Ishimwe Etienne · EU AI Act","inLanguage":"en"}
 ]}
 </script>
@@ -109,6 +109,10 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
 .card ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px}
 .card li{position:relative;padding-left:20px;font-size:15px;color:var(--ink2);flex:1 1 40%;min-width:180px}
 .card li::before{content:"✓";position:absolute;left:0;color:var(--olive);font-weight:700}
+.pricetag{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);font-family:"Fraunces",serif;font-size:22px;font-weight:500;color:var(--red)}
+.pricetag span{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:400;margin-left:6px}
+.note{font-size:14.5px;color:var(--mute);margin-top:16px}
+.note a{color:var(--olive);text-decoration:none;border-bottom:1px solid var(--olive)}
 
 .acc details{border-bottom:1px solid var(--rule)}
 .acc summary{cursor:pointer;list-style:none;padding:15px 0;font-family:"Fraunces",serif;font-size:clamp(17px,2.4vw,20px);font-weight:440;color:var(--ink);display:flex;justify-content:space-between;gap:14px;align-items:center}
@@ -176,9 +180,10 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
   </section>
 
   <!-- WHAT I DO -->
-  <section>
+  <section id="services">
     <span class="label">What I do</span>
-    <h2>Two services. <em>Both done for you.</em></h2>
+    <h2>Two services, <em>both done for you</em>.</h2>
+    <p>For SMEs and teams that use or build AI. Fixed scope, plain English, no surprises.</p>
     <div class="svc">
       <div class="card">
         <div class="h">AI literacy training</div>
@@ -192,6 +197,7 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
           <li>Attendance records</li>
           <li>Annual refresher option</li>
         </ul>
+        <div class="pricetag">from €450 <span>per company</span></div>
       </div>
       <div class="card">
         <div class="h">EU AI Act compliance audit</div>
@@ -203,8 +209,26 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
           <li>Compliance report</li>
           <li>Action plan</li>
         </ul>
+        <div class="pricetag">from €1,200 <span>scoped to your size</span></div>
       </div>
     </div>
+    <p class="note">Prices flex with your size and needs, and we confirm everything on the free call. <a href="sample-audit.pdf" download>See a sample audit report (PDF)</a></p>
+  </section>
+
+  <!-- PROOF -->
+  <section>
+    <span class="label">Recent work</span>
+    <h2>Already trusted by a <em>real team</em>.</h2>
+    <p>I recently helped a European wellness app get ready for the EU AI Act: I mapped their AI, classified the risk, and handed them a plain action plan. <span style="color:var(--mute)">Client anonymous by request.</span></p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <span class="label">Get started</span>
+    <h2>Book a free 20-minute call.</h2>
+    <p>I will tell you what is urgent, what is noise, and what to do first. No pressure, no jargon.</p>
+    <a class="cta book" href="#book" data-subject="Free 20-minute EU AI Act call">Book the free call</a>
+    <span class="subcta" style="margin-top:14px">Prefer email? <a href="mailto:etienne.ishi@gmail.com?subject=My%20EU%20AI%20Act%20situation">Tell me your situation</a></span>
   </section>
 
   <!-- FAQ ACCORDION -->
@@ -223,7 +247,7 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
 
   <div class="foot">
     Ishimwe Etienne · EU AI Act compliance &amp; AI governance · Poland, serving the EU<br/>
-    <a href="about.html">About</a> · <a href="check.html">Start the check</a> · <a href="#faq">FAQ</a> · <a href="mailto:etienne.ishi@gmail.com">etienne.ishi@gmail.com</a> · <a href="https://www.linkedin.com/in/ishimwe-byiringiro-etienne/">LinkedIn</a><br/>
+    <a href="about.html">About</a> · <a href="check.html">Start the check</a> · <a href="#faq">FAQ</a> · <a href="insights.html">Insights</a> · <a href="mailto:etienne.ishi@gmail.com">etienne.ishi@gmail.com</a> · <a href="https://www.linkedin.com/in/ishimwe-byiringiro-etienne/">LinkedIn</a><br/>
     <span style="color:var(--mute)">Last updated 28 June 2026 · General information, not legal advice.</span>
   </div>
 </main>
