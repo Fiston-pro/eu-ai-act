@@ -28,7 +28,6 @@ li{margin-bottom:5px;color:var(--ink2);list-style-position:inside}
 .steps{counter-reset:s}
 .steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;font-family:"JetBrains Mono",monospace;color:var(--red);font-weight:600;font-size:10px}
 .foot{margin-top:26px;padding-top:12px;border-top:1px solid var(--rule);font-family:"JetBrains Mono",monospace;font-size:8.5px;color:var(--mute);line-height:1.7}
-.note{font-size:10px;color:var(--mute);font-style:italic;margin-top:4px}
 .sysname{font-weight:600;color:var(--ink)}
 </style></head>
 <body>
@@ -36,41 +35,41 @@ li{margin-bottom:5px;color:var(--ink2);list-style-position:inside}
   <div class="band">
     <div class="kick">EU AI Act readiness report · illustrative sample</div>
     <h1>AI Act readiness, <em>at a glance</em>.</h1>
-    <div class="meta">Prepared for: a wellness app (anonymised example)<br/>Prepared by: Ishimwe Etienne · EU AI Act compliance<br/>Sample only. Your report uses your real systems.</div>
+    <div class="meta">Prepared for: an exam-prep edtech (illustrative example)<br/>Prepared by: Ishimwe Etienne · EU AI Act compliance<br/>Sample only. Your report uses your real systems.</div>
   </div>
 
   <h2>Summary</h2>
-  <p>Overall status: <span class="badge amber">Amber, gaps to close</span>. We found three AI systems in use. None are banned, two need transparency fixes, and the team has not done the required staff training yet. All of it is fixable well before the 2 August 2026 deadline.</p>
+  <p>Overall status: <span class="badge amber">Amber, gaps to close</span>. We found three AI systems. One is <strong>high risk</strong> because it scores student work, and two need transparency fixes. None of the controls are in place yet, but all of it is fixable before the 2 August 2026 deadline.</p>
 
   <h2>1. AI inventory</h2>
   <table>
     <tr><th>System</th><th>What it does</th><th>Built or bought</th><th>Data it touches</th></tr>
-    <tr><td class="sysname">Plan recommender</td><td>Suggests workouts and habits</td><td>Built (fine-tuned model)</td><td>Usage, preferences</td></tr>
-    <tr><td class="sysname">Support chatbot</td><td>Answers user questions in-app</td><td>Bought (vendor)</td><td>Chat messages</td></tr>
-    <tr><td class="sysname">Ad targeting</td><td>Finds new users</td><td>Bought (platform)</td><td>Behaviour signals</td></tr>
+    <tr><td class="sysname">Practice grader</td><td>Scores practice answers and essays</td><td>Built (fine-tuned model)</td><td>Student answers</td></tr>
+    <tr><td class="sysname">Study-plan recommender</td><td>Suggests what to revise next</td><td>Built</td><td>Scores, usage</td></tr>
+    <tr><td class="sysname">Support chatbot</td><td>Answers student questions in-app</td><td>Bought (vendor)</td><td>Chat messages</td></tr>
   </table>
 
   <h2>2. Risk classification</h2>
   <ul>
-    <li><span class="sysname">Plan recommender:</span> <span class="badge green">Limited</span> today. Becomes higher risk if it starts making health or medical decisions, so we flag it to watch.</li>
-    <li><span class="sysname">Support chatbot:</span> <span class="badge green">Limited</span>. Must clearly tell users they are talking to AI (Article 50).</li>
-    <li><span class="sysname">Ad targeting:</span> <span class="badge green">Minimal</span> under the Act, but check it never crosses into manipulation.</li>
+    <li><span class="sysname">Practice grader:</span> <span class="badge red">High risk</span>. It evaluates learning outcomes (Annex III, point 3), so it needs human oversight, documentation, and accuracy checks.</li>
+    <li><span class="sysname">Study-plan recommender:</span> <span class="badge green">Limited</span> today. Watch it if it starts deciding who gets access to what.</li>
+    <li><span class="sysname">Support chatbot:</span> <span class="badge green">Limited</span>. Must clearly tell students they are talking to AI (Article 50).</li>
   </ul>
 
   <h2>3. Gaps to close</h2>
   <ul>
+    <li>The grader is high risk, with none of the required controls in place yet. This is the priority.</li>
     <li>The chatbot does not say it is AI. That is an Article 50 transparency gap.</li>
     <li>No staff AI literacy training yet. Required since February 2025 (Article 4).</li>
     <li>No written AI inventory or owner. This report is the first version.</li>
-    <li>No human oversight note for the recommender.</li>
   </ul>
 
   <h2>4. Action plan</h2>
   <ol class="steps">
+    <li>Put human oversight on the grader: a teacher can review and override its scores.</li>
+    <li>Document the grader: purpose, data, accuracy, and limits.</li>
     <li>Add a short "you are chatting with AI" line to the chatbot. About one day of work.</li>
     <li>Run a 60 to 90 minute AI literacy training for the team, with a certificate and records.</li>
-    <li>Document the plan recommender: purpose, data, and who owns it.</li>
-    <li>Name one person responsible for human oversight of AI decisions.</li>
     <li>Re-check this list before 2 August 2026, and after any big AI change.</li>
   </ol>
 
