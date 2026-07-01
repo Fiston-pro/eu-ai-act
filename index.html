@@ -28,6 +28,7 @@
 {"@context":"https://schema.org","@graph":[
 {"@type":"Person","@id":"https://ishi-eu-ai-act.vercel.app/#ishi","name":"Ishimwe Etienne","alternateName":"Ishi","jobTitle":"Engineer · AI governance & EU AI Act compliance","url":"https://ishi-eu-ai-act.vercel.app/","email":"etienne.ishi@gmail.com","sameAs":["https://www.linkedin.com/in/ishimwe-byiringiro-etienne/"],"address":{"@type":"PostalAddress","addressCountry":"PL"},"knowsAbout":["EU AI Act","AI governance","AI literacy training","High-risk AI systems","Annex III","Article 4"]},
 {"@type":"ProfessionalService","@id":"https://ishi-eu-ai-act.vercel.app/#service","name":"Ishimwe Etienne · EU AI Act compliance","description":"AI literacy training and EU AI Act compliance audits for companies that build or use AI.","url":"https://ishi-eu-ai-act.vercel.app/","provider":{"@id":"https://ishi-eu-ai-act.vercel.app/#ishi"},"areaServed":[{"@type":"Place","name":"European Union"},{"@type":"Country","name":"Poland"}],"serviceType":"EU AI Act compliance and AI governance","email":"etienne.ishi@gmail.com","hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","price":"450","priceCurrency":"EUR","itemOffered":{"@type":"Service","name":"AI literacy training","description":"Article 4 staff training: 60 to 90 minute session, slides, company AI policy guidance, quiz, certificate, attendance records, annual refresher."}},{"@type":"Offer","price":"1200","priceCurrency":"EUR","itemOffered":{"@type":"Service","name":"EU AI Act compliance audit","description":"AI inventory, risk classification, gap analysis, compliance report and action plan."}}]}},
+{"@type":"Review","reviewBody":"Ishi put together a questionnaire that immediately got to the point, tailored to the nature of our business. Simple to fill in, and his analysis was thorough. He anticipated where we are heading and flagged how to stay compliant with the AI Act as we grow. We left with full clarity on our direction. Smooth and professional. Highly recommend.","author":{"@type":"Person","name":"Dariusz Tarasek","jobTitle":"CEO, Willway"},"itemReviewed":{"@id":"https://ishi-eu-ai-act.vercel.app/#service"}},
 {"@type":"WebSite","@id":"https://ishi-eu-ai-act.vercel.app/#website","url":"https://ishi-eu-ai-act.vercel.app/","name":"Ishimwe Etienne · EU AI Act","inLanguage":"en"}
 ]}
 </script>
@@ -113,6 +114,12 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
 .pricetag span{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:400;margin-left:6px}
 .note{font-size:14.5px;color:var(--mute);margin-top:16px}
 .note a{color:var(--olive);text-decoration:none;border-bottom:1px solid var(--olive)}
+.quote{border-left:3px solid var(--red);padding:2px 0 2px 22px;margin:10px 0 0}
+.quote p{font-family:"Fraunces",serif;font-style:italic;font-weight:320;font-size:clamp(19px,2.7vw,23px);line-height:1.42;color:var(--ink);max-width:54ch;margin:0}
+.quote p strong{font-style:normal;font-weight:600;color:var(--red)}
+.quote .by{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.03em;color:var(--mute);margin-top:16px;display:block}
+.quote .by b{color:var(--ink);font-weight:600}
+.quote .by a{color:var(--red);text-decoration:none;border-bottom:1px solid var(--red)}
 
 .acc details{border-bottom:1px solid var(--rule)}
 .acc summary{cursor:pointer;list-style:none;padding:15px 0;font-family:"Fraunces",serif;font-size:clamp(17px,2.4vw,20px);font-weight:440;color:var(--ink);display:flex;justify-content:space-between;gap:14px;align-items:center}
@@ -217,9 +224,12 @@ section{padding:38px 0;border-top:1px solid var(--rule)}
 
   <!-- PROOF -->
   <section>
-    <span class="label">Recent work</span>
+    <span class="label">In a client's words</span>
     <h2>Already trusted by a <em>real team</em>.</h2>
-    <p>I helped <a href="https://www.willway.app/" style="color:var(--red);border-bottom:1px solid var(--red);text-decoration:none;font-weight:600">Willway</a>, an edtech that helps students prepare for the Polish matura exam, get ready for the EU AI Act. I mapped their AI, classified the risk, and handed them a plain action plan.</p>
+    <blockquote class="quote">
+      <p>"Ishi put together a questionnaire that immediately got to the point, tailored to the nature of our business, which I didn't expect. Simple to fill in, and his analysis was thorough. He even anticipated where we're heading and flagged how to stay compliant with the AI Act as we grow. We left the process with <strong>full clarity on our direction</strong>. The whole experience was smooth and professional. Highly recommend."</p>
+      <span class="by"><b>Dariusz Tarasek</b>, CEO @ <a href="https://www.willway.app/">Willway</a> · matura exam-prep edtech</span>
+    </blockquote>
   </section>
 
   <!-- CONTACT -->
