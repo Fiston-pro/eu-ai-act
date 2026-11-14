@@ -1,46 +1,62 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"/>
+<title>EU AI Act readiness report (sample) · Ishimwe Etienne</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
-:root{--paper:#EEE6D3;--ink:#1A1410;--ink2:#3A2F25;--mute:#6B5C4A;--red:#B83228;--amber:#9A5A1F;--olive:#52612A;--rule:#1A14102E}
+:root{--paper:#EEE6D3;--paper2:#F5EFE0;--ink:#1A1410;--ink2:#3A2F25;--mute:#6B5C4A;--red:#B83228;--amber:#9A5A1F;--olive:#52612A;--rule:#1A14102E}
 *{margin:0;padding:0;box-sizing:border-box}
 @page{size:A4;margin:0}
-body{font-family:"Poppins",sans-serif;color:var(--ink);font-size:11px;line-height:1.5;background:#fff}
-.page{width:210mm;min-height:297mm;padding:20mm 18mm}
-.band{background:var(--paper);border-left:4px solid var(--red);padding:16px 18px;margin-bottom:22px}
-.kick{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:600}
-h1{font-family:"Fraunces",serif;font-weight:400;font-size:30px;line-height:1.05;margin:4px 0 6px}
+body{font-family:"Poppins",sans-serif;color:var(--ink);font-size:11px;line-height:1.5;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;min-height:297mm;padding:15mm 17mm 11mm;page-break-after:always;position:relative}
+.page:last-child{page-break-after:auto}
+.band{background:var(--paper);border-left:4px solid var(--red);padding:13px 16px;margin-bottom:14px}
+.kick{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:"Fraunces",serif;font-weight:400;font-size:26px;line-height:1.05;margin:3px 0 5px}
 h1 em{font-style:italic;color:var(--red)}
 .meta{font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--mute);line-height:1.7}
-h2{font-family:"Fraunces",serif;font-weight:500;font-size:16px;margin:20px 0 8px;color:var(--ink)}
-.badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:3px;font-weight:600}
+h2{font-family:"Fraunces",serif;font-weight:500;font-size:15px;margin:13px 0 6px;color:var(--ink)}
+h2:first-of-type{margin-top:0}
+p{margin-bottom:7px;color:var(--ink2)}
+p strong{color:var(--ink)}
+.badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:3px;font-weight:700}
 .amber{background:#9A5A1F1A;color:var(--amber)}
 .red{background:#B832281A;color:var(--red)}
 .green{background:#5261241A;color:var(--olive)}
+.gray{background:#1A141014;color:var(--mute)}
 table{width:100%;border-collapse:collapse;margin:6px 0 4px;font-size:10px}
-th{text-align:left;font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--ink);padding:6px 8px 5px}
-td{padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink2)}
-ol,ul{margin:6px 0 6px 4px}
-li{margin-bottom:5px;color:var(--ink2);list-style-position:inside}
-.steps li{list-style:none;padding-left:24px;position:relative;counter-increment:s}
-.steps{counter-reset:s}
-.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;font-family:"JetBrains Mono",monospace;color:var(--red);font-weight:600;font-size:10px}
-.foot{margin-top:26px;padding-top:12px;border-top:1px solid var(--rule);font-family:"JetBrains Mono",monospace;font-size:8.5px;color:var(--mute);line-height:1.7}
+th{text-align:left;font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--ink);padding:5px 8px 4px}
+td{padding:5px 8px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink2)}
+tr.hot td{background:#B832280A}
+ul{margin:4px 0 4px 2px;list-style:none}
+ul li{position:relative;padding-left:16px;margin-bottom:5px;color:var(--ink2)}
+ul li::before{content:"";position:absolute;left:3px;top:7px;width:4px;height:4px;border-radius:50%;background:var(--red)}
+.steps{counter-reset:s;margin:4px 0}
+.steps li{list-style:none;padding-left:26px;position:relative;counter-increment:s;margin-bottom:5px;color:var(--ink2)}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;font-family:"JetBrains Mono",monospace;color:var(--red);font-weight:700;font-size:10px;background:none;width:auto;height:auto;border-radius:0}
+.steps li b{color:var(--ink)}
+.note{background:var(--paper2);border:1px solid var(--rule);border-radius:4px;padding:9px 12px;margin:8px 0;font-size:10px;color:var(--ink2)}
+.note b{color:var(--ink)}
+.foot{margin-top:14px;padding-top:8px;border-top:1px solid var(--rule);font-family:"JetBrains Mono",monospace;font-size:8.5px;color:var(--mute);line-height:1.7}
 .sysname{font-weight:600;color:var(--ink)}
+.pill{font-family:"JetBrains Mono",monospace;font-size:9px;color:var(--red);font-weight:700}
 </style></head>
 <body>
+
 <div class="page">
   <div class="band">
     <div class="kick">EU AI Act readiness report · illustrative sample</div>
     <h1>AI Act readiness, <em>at a glance</em>.</h1>
-    <div class="meta">Prepared for: an exam-prep edtech (illustrative example)<br/>Prepared by: Ishimwe Etienne · EU AI Act compliance<br/>Sample only. Your report uses your real systems.</div>
+    <div class="meta">Prepared for: an exam-prep edtech (illustrative example)<br/>
+      Prepared by: Ishimwe Etienne · EU AI Act compliance &amp; AI governance<br/>
+      Law as of: 14 November 2026 · Regulation (EU) 2024/1689 as amended by Regulation (EU) 2026/1744<br/>
+      Sample only. Your report uses your real systems and your real dates.</div>
   </div>
 
   <h2>Summary</h2>
-  <p>Overall status: <span class="badge amber">Amber, gaps to close</span>. We found three AI systems. One is <strong>high risk</strong> because it scores student work, and two need transparency fixes. None of the controls are in place yet, but all of it is fixable before the 2 August 2026 deadline.</p>
-
+  <p>Overall status: <span class="badge amber">Amber, gaps to close</span> &nbsp; We found three AI systems. One is <strong>high risk</strong> because it scores student work. Two have transparency duties that are <strong>already live today</strong>. Nothing here is a crisis: the two live items take about a day each, and the expensive work is not due until 2 December 2027.</p>
+  
   <h2>1. AI inventory</h2>
   <table>
     <tr><th>System</th><th>What it does</th><th>Built or bought</th><th>Data it touches</th></tr>
@@ -50,32 +66,68 @@ li{margin-bottom:5px;color:var(--ink2);list-style-position:inside}
   </table>
 
   <h2>2. Risk classification</h2>
-  <ul>
-    <li><span class="sysname">Practice grader:</span> <span class="badge red">High risk</span>. It evaluates learning outcomes (Annex III, point 3), so it needs human oversight, documentation, and accuracy checks.</li>
-    <li><span class="sysname">Study-plan recommender:</span> <span class="badge green">Limited</span> today. Watch it if it starts deciding who gets access to what.</li>
-    <li><span class="sysname">Support chatbot:</span> <span class="badge green">Limited</span>. Must clearly tell students they are talking to AI (Article 50).</li>
-  </ul>
+  <table>
+    <tr><th>System</th><th>Class</th><th>Why</th><th>Duties start</th></tr>
+    <tr class="hot"><td class="sysname">Practice grader</td><td><span class="badge red">High risk</span></td><td>Evaluates learning outcomes (Annex III, point 3(b)). A human reviewing scores does not change this, because the system profiles students (Article 6(3)).</td><td class="pill">2 Dec 2027</td></tr>
+    <tr><td class="sysname">Study-plan recommender</td><td><span class="badge green">Limited</span></td><td>Suggests revision order. It would become high risk if it started deciding who gets access to what.</td><td>Watch it</td></tr>
+    <tr><td class="sysname">Support chatbot</td><td><span class="badge green">Limited</span></td><td>Must clearly tell students they are talking to AI (Article 50).</td><td class="pill">Live now</td></tr>
+  </table>
+  <p>Your role for all three is <strong>provider</strong>: you ship them under your own name (Article 3(3)). Watch the vendor chatbot, because putting your name on it or changing its purpose makes you its provider too (Article 25).</p>
 
-  <h2>3. Gaps to close</h2>
-  <ul>
-    <li>The grader is high risk, with none of the required controls in place yet. This is the priority.</li>
-    <li>The chatbot does not say it is AI. That is an Article 50 transparency gap.</li>
-    <li>No staff AI literacy training yet. Required since February 2025 (Article 4).</li>
-    <li>No written AI inventory or owner. This report is the first version.</li>
-  </ul>
-
-  <h2>4. Action plan</h2>
-  <ol class="steps">
-    <li>Put human oversight on the grader: a teacher can review and override its scores.</li>
-    <li>Document the grader: purpose, data, accuracy, and limits.</li>
-    <li>Add a short "you are chatting with AI" line to the chatbot. About one day of work.</li>
-    <li>Run a 60 to 90 minute AI literacy training for the team, with a certificate and records.</li>
-    <li>Re-check this list before 2 August 2026, and after any big AI change.</li>
-  </ol>
+  <h2>3. What applies when</h2>
+  <table>
+    <tr><th>Date</th><th>What</th><th>Touches you?</th></tr>
+    <tr><td class="pill">Live since 2 Feb 2025</td><td>Banned uses, and the duty to support your team's AI literacy (Article 4)</td><td>Yes, literacy</td></tr>
+    <tr class="hot"><td class="pill">Live since 2 Aug 2026</td><td>Chatbots and AI content must say they are AI (Article 50)</td><td>Yes, the chatbot</td></tr>
+    <tr class="hot"><td class="pill">2 Dec 2026</td><td>Machine-readable marking of AI-generated content, for products already on the market (Article 50(2))</td><td>Only if you generate content</td></tr>
+    <tr><td class="pill">2 Dec 2027</td><td>High-risk duties for Annex III systems: oversight, logging, documentation, bias testing, registration</td><td>Yes, the grader</td></tr>
+    <tr><td class="pill">2 Aug 2028</td><td>High-risk duties for AI inside regulated products, such as medical devices</td><td>No</td></tr>
+  </table>
+  <div class="note"><b>Why these dates may differ from what you read elsewhere.</b> The original Act put most duties at 2 August 2026. Regulation (EU) 2026/1744, in force since 27 July 2026, moved the high-risk dates to 2 December 2027 and 2 August 2028. It did not move the bans, AI literacy, the general-purpose model rules or Article 50. A great deal of published guidance still shows the old dates.</div>
 
   <div class="foot">
-    This is an illustrative sample, not legal advice. Articles refer to Regulation (EU) 2024/1689.<br/>
-    Ishimwe Etienne · etienne.ishi@gmail.com · ishi-eu-ai-act.vercel.app · Poland, serving the EU
+    Illustrative sample, not legal advice. Articles refer to Regulation (EU) 2024/1689 as amended by Regulation (EU) 2026/1744.<br/>
+    Ishimwe Etienne · etienne.ishi@gmail.com · ishi-eu-ai-act.vercel.app · Poland, serving the EU &nbsp;·&nbsp; Page 1 of 2
   </div>
 </div>
+
+<div class="page">
+  <h2>4. Gaps to close</h2>
+  <table>
+    <tr><th>Gap</th><th>Severity</th><th>Effort</th></tr>
+    <tr class="hot"><td>The chatbot does not tell students it is AI. This duty is live today, not in 2027.</td><td><span class="badge red">Live breach</span></td><td>About a day</td></tr>
+    <tr class="hot"><td>No record of AI literacy measures for the team. The duty has been live since February 2025.</td><td><span class="badge red">Live breach</span></td><td>One session</td></tr>
+    <tr><td>The grader has no human oversight design, no logging, and no written documentation.</td><td><span class="badge amber">Due Dec 2027</span></td><td>Weeks</td></tr>
+    <tr><td>No bias testing on grader output across student groups.</td><td><span class="badge amber">Due Dec 2027</span></td><td>Weeks</td></tr>
+    <tr><td>No written AI inventory or named owner. This report is version one.</td><td><span class="badge gray">Housekeeping</span></td><td>An hour</td></tr>
+  </table>
+
+  <h2>5. Action plan</h2>
+  <p><strong>This month, because it is already law.</strong></p>
+  <ol class="steps">
+    <li><b>Label the chatbot.</b> One line of copy so students can tell they are talking to AI (Article 50(1)).</li>
+    <li><b>Run one AI literacy session and keep the attendance list.</b> Since July 2026 the duty is to take measures, not to guarantee a level per person, so a short session plus a record is proportionate proof (Article 4).</li>
+    <li><b>Ask your chatbot vendor, in writing, whether its output is machine-readable marked.</b> Keep the answer. It decides whether 2 December 2026 applies to you.</li>
+  </ol>
+  <p><strong>Next quarter, so December 2027 is not a scramble.</strong></p>
+  <ol class="steps">
+    <li><b>Put real human oversight on the grader.</b> A teacher sees the evidence before the score, can override it without friction, and the override rate is something you can report (Article 14).</li>
+    <li><b>Turn on logging.</b> Each score traceable to its inputs. Six months of retention is the floor your customers will have to meet (Articles 12 and 26(6)).</li>
+    <li><b>Write the technical documentation.</b> Purpose, training data, accuracy, limits, oversight (Annex IV). As an SME you may use the simplified form.</li>
+  </ol>
+  <p><strong>Before the deadline.</strong></p>
+  <ol class="steps">
+    <li><b>Test for bias and write down the result</b> across the student groups you actually serve (Article 10).</li>
+    <li><b>Self-assess, declare, register.</b> Education systems take the internal-control route, so no notified body is involved (Annex VI), then the declaration of conformity and the EU database entry (Articles 47 and 49).</li>
+    <li><b>Re-check this report</b> after any significant change to the grader, and at least once a year. A system already on the market is pulled into the new rules by significant design changes (Article 111).</li>
+  </ol>
+
+  <div class="note"><b>What this report is not.</b> It is an engineering and documentation map, not a legal opinion. Where a question turns on legal interpretation rather than on how the system is built, that is flagged in your report and a lawyer is brought in for sign-off.</div>
+
+  <div class="foot">
+    Illustrative sample, not legal advice. Articles refer to Regulation (EU) 2024/1689 as amended by Regulation (EU) 2026/1744.<br/>
+    Ishimwe Etienne · etienne.ishi@gmail.com · ishi-eu-ai-act.vercel.app · Poland, serving the EU &nbsp;·&nbsp; Page 2 of 2
+  </div>
+</div>
+
 </body></html>

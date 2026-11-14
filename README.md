@@ -15,8 +15,22 @@ no legal jargon. Two services: **AI literacy training** and a **compliance audit
 | `overview.html` | Redirect to `/` (old URL). |
 | `og.png` / `og-source.html` | Social share image (1200x630) and its source (re-render with Playwright). |
 | `robots.txt`, `sitemap.xml` | Crawl directives (AI crawlers allowed) + sitemap. |
-| `sample-audit.pdf` | Placeholder sample deliverable (not currently linked on the site). |
+| `sample-audit.pdf` | Two-page sample deliverable, linked from the services section. **Build output** — rebuild it from `sample-audit-source.html` after any edit (see `KEY-DATES.md`). |
 | `funnel-map.html` | Internal planning sketch (not linked). |
+| `KEY-DATES.md` | **Single source of truth for every EU AI Act date on this site.** Change a date here first. |
+| `tools/check-dates.mjs` | Fails the build on stale AI Act claims. Runs in CI on every push. |
+
+## Before you deploy
+
+```bash
+node tools/check-dates.mjs
+```
+
+The site kept the old high-risk date for months after Regulation (EU) 2026/1744
+moved it. This check exists so that cannot happen quietly again: it scans every page for
+known-stale wording, confirms the current high-risk dates are still present, and fails if
+`sample-audit-source.html` was edited without rebuilding the PDF. After rebuilding the PDF, run
+`node tools/check-dates.mjs --stamp`.
 
 ## Brand
 
