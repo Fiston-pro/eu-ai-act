@@ -132,7 +132,7 @@ body{background:var(--paper);color:var(--ink);font-family:"Poppins",system-ui,-a
 "use strict";
 var PH_KEY="phc_yyUhgVn4FhGkKpqzY3s8dfc8tV4hyxbzH27GMEBDmBKk", PH_HOST="https://us.i.posthog.com";
 var CAL_LINK="etienne-ishi/20min", EMAIL="etienne.ishi@gmail.com";
-var DEADLINE=new Date("2026-08-02T00:00:00");
+var DEADLINE=new Date("2027-12-02T00:00:00"); /* high-risk rules for Annex III, after the 2026 Digital Omnibus */
 function daysLeft(){var d=Math.ceil((DEADLINE-new Date())/86400000);return d>0?d:0;}
 
 if(PH_KEY){
@@ -151,7 +151,7 @@ window.Cal.ns["review"]("ui",{hideEventTypeDetails:false,layout:"month_view"});
 
 /* ---------- flow content ---------- */
 var INDUSTRIES={
-  hr:{label:"HR or recruiting",line:"In HR, hiring and people decisions are high risk under Annex III. The audit is where you start."},
+  hr:{label:"HR or recruiting",line:"In HR, hiring and people decisions are high risk under Annex III, with duties from 2 December 2027. The audit is where you start."},
   sw:{label:"We build software for clients",line:"Building AI for clients usually makes you the provider, which is the heaviest duty class. We sort it per project."},
   st:{label:"A startup building AI",line:"For EU and enterprise sales, being able to show compliance is a real advantage, not just a cost."},
   pub:{label:"Government, health or schools",line:"Public services that touch citizens are watched hardest, and extra duties apply."},
@@ -169,7 +169,9 @@ function screens(){return [
  {k:"industry"},
  {k:"ask",id:"people",q:"Do you use AI to make decisions about people?",sub:"Hiring, credit, access to a service, grading, that kind of thing.",
    opts:[{t:"Yes",v:"yes",ic:"✓",flag:"people"},{t:"Not sure",v:"unsure",ic:"?",flag:"people"},{t:"No",v:"no",ic:"✗"}]},
- {k:"ask",id:"training",q:"Has your team had any AI training yet?",sub:"The law has required basic AI literacy since February 2025.",
+ {k:"ask",id:"genai",q:"Do you run a chatbot, or publish content made with AI?",sub:"Support bots, AI writing, AI images or voice, that kind of thing.",
+   opts:[{t:"Yes",v:"yes",ic:"✓",flag:"genai"},{t:"Not sure",v:"unsure",ic:"?",flag:"genai"},{t:"No",v:"no",ic:"✗"}]},
+ {k:"ask",id:"training",q:"Has your team had any AI training yet?",sub:"Supporting your team's AI literacy has been a legal duty since February 2025.",
    opts:[{t:"Yes, recently",v:"yes",ic:"✓"},{t:"No, or not sure",v:"no",ic:"✗",flag:"training"}]},
  {k:"result"}
 ];}
@@ -210,14 +212,15 @@ function tStart(){return '<span class="kicker">2 minutes · plain English</span>
   '<button class="go" data-act="next">Let’s start</button>';}
 function tInfo(s){return '<span class="kicker">'+s.kicker+'</span><h1 class="big">'+s.h+'</h1><p class="sub">'+s.sub+'</p><button class="go" data-act="next">'+s.btn+'</button>';}
 function tWhy(){return '<span class="kicker">Why it matters now</span><h1 class="big">The clock is <em>real</em>.</h1>'+
-  '<div class="cd"><div class="n">'+daysLeft()+'</div><div class="c">days until 2 August 2026, when most rules start.</div></div>'+
+  '<div class="cd"><div class="n">'+daysLeft()+'</div><div class="c">days until 2 December 2027, when the high-risk rules start.</div></div>'+
+  '<p class="sub" style="margin-bottom:16px">Already live today: the bans, AI literacy, and the rule that chatbots and AI content must say they are AI.</p>'+
   '<div class="tl">'+
-   '<div class="ev"><div class="dt">2018</div><div class="tx">GDPR starts</div></div>'+
    '<div class="ev"><div class="dt">Aug 2024</div><div class="tx">AI Act becomes law</div></div>'+
    '<div class="ev"><div class="dt">Feb 2025</div><div class="tx">Bans + AI literacy live</div></div>'+
    '<div class="ev"><div class="dt">Aug 2025</div><div class="tx">General AI model rules</div></div>'+
-   '<div class="ev hot"><div class="dt">Aug 2026</div><div class="tx">Most rules apply</div></div>'+
-   '<div class="ev"><div class="dt">Aug 2027</div><div class="tx">AI inside products</div></div>'+
+   '<div class="ev hot"><div class="dt">Aug 2026 · live</div><div class="tx">Chatbots and AI content must disclose</div></div>'+
+   '<div class="ev hot"><div class="dt">Dec 2027</div><div class="tx">High-risk rules apply</div></div>'+
+   '<div class="ev"><div class="dt">Aug 2028</div><div class="tx">AI inside products</div></div>'+
   '</div><button class="go" data-act="next">And the fines?</button>';}
 function tFines(){return '<span class="kicker">The price of ignoring it</span><h1 class="big">Bigger than <em>GDPR</em>.</h1>'+
   '<p class="sub">GDPR already gave us a 1.2 billion euro fine (Meta, 2023). The AI Act ceiling is higher still.</p>'+
@@ -233,7 +236,7 @@ function tRanks(){return '<span class="kicker">The four ranks</span><h1 class="b
    '<div class="rk b4"><span class="lv">Minimal</span><span class="ds">Free to use. Spam filters, game AI, everyday tools.</span></div>'+
   '</div><button class="go" data-act="next">So what do I do?</button>';}
 function tServices(){return '<span class="kicker">What I do</span><h1 class="big">Two things, <em>done for you</em>.</h1>'+
-  '<div class="mini"><div class="h">AI literacy training</div><span class="w">Required since Feb 2025 · Article 4</span>'+
+  '<div class="mini"><div class="h">AI literacy training</div><span class="w">A duty since Feb 2025 · Article 4</span>'+
    '<ul><li>60 to 90 min</li><li>Slides</li><li>AI policy guidance</li><li>Quiz</li><li>Certificate</li><li>Attendance records</li><li>Annual refresher</li></ul></div>'+
   '<div class="mini"><div class="h">Compliance audit</div><span class="w">Know where you stand</span>'+
    '<ul><li>AI inventory</li><li>Risk classification</li><li>Gap analysis</li><li>Compliance report</li><li>Action plan</li></ul></div>'+
@@ -246,14 +249,18 @@ function tAsk(s){var o=s.opts.map(function(op,j){return '<button class="opt" dat
 function tResult(){
   var ind=INDUSTRIES[state.industry]||INDUSTRIES.other;
   var audit=(state.ans.people==="yes"||state.ans.people==="unsure");
+  var genai=(state.ans.genai==="yes"||state.ans.genai==="unsure");
+  var n=1;
   var html='<span class="kicker">Your short list</span><h1 class="big">Here’s what you <em>likely need</em>.</h1>';
   html+='<p class="sub">'+ind.line+'</p>';
-  html+='<div class="need"><b>1. AI literacy training.</b> This applies to almost everyone using AI, and it has been required since February 2025.'+(state.ans.training==="no"?" Your team has not done it yet, so this is the quick first win.":"")+'</div>';
-  if(audit){html+='<div class="need"><b>2. A compliance audit.</b> You make decisions about people, which points to high risk. The audit finds your systems, ranks them, and gives you the action plan.</div>';}
-  else{html+='<div class="need"><b>2. A light risk check.</b> You are likely lower risk, but a short check confirms it and keeps you safe. Being wrong here is expensive.</div>';}
-  html+='<p class="sub" style="margin-top:14px">Want me to do this for you? Grab a free 20 minute call and I’ll tell you what is urgent and what can wait.</p>';
-  html+='<a class="go book" href="#book" data-subject="Free 20-minute EU AI Act call">Book the free call</a>';
-  html+='<a class="go ghost" href="mailto:'+EMAIL+'?subject='+encodeURIComponent("EU AI Act, my short list")+'" data-act="mail">Email me instead</a>';
+  if(genai){html+='<div class="need"><b>'+(n++)+'. A disclosure check.</b> Chatbots and AI content must say they are AI. That rule is already live (Article 50, since 2 August 2026), so this one has no waiting time.</div>';}
+  html+='<div class="need"><b>'+(n++)+'. AI literacy training.</b> This applies to almost everyone using AI, and the duty has been live since February 2025.'+(state.ans.training==="no"?" Your team has not done it yet, so this is a quick win.":"")+'</div>';
+  if(audit){html+='<div class="need"><b>'+(n++)+'. A compliance audit.</b> You make decisions about people, which points to high risk. Those rules start on 2 December 2027. The audit finds your systems, ranks them, and gives you the action plan.</div>';}
+  else{html+='<div class="need"><b>'+(n++)+'. A light risk check.</b> You are likely lower risk, but a short check confirms it and keeps you safe. Being wrong here is expensive.</div>';}
+  html+='<p class="sub" style="margin-top:14px">Want it in writing first? Email me and I’ll send a free one-page snapshot for your company. Or grab a free 20 minute call.</p>';
+  var body="My answers from the check:\n- Our world: "+ind.label+"\n- AI decisions about people: "+(state.ans.people||"not answered")+"\n- Chatbot or AI content: "+(state.ans.genai||"not answered")+"\n- Team AI training: "+(state.ans.training||"not answered")+"\n\nCompany:\nWhat our AI does (two lines):\n";
+  html+='<a class="go" href="mailto:'+EMAIL+'?subject='+encodeURIComponent("Free AI Act snapshot")+'&body='+encodeURIComponent(body)+'" data-act="mail">Get my free snapshot</a>';
+  html+='<a class="go ghost book" href="#book" data-subject="Free 20-minute EU AI Act call">Book the free call</a>';
   return html;
 }
 
